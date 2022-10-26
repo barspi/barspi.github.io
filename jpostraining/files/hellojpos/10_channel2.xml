@@ -1,0 +1,41 @@
+<?xml version="1.0" ?>
+<channel-adaptor  name='ChannelAdaptor'  logger="Q2"  enabled="true"
+                  class="org.jpos.q2.iso.ChannelAdaptor">
+
+    <!-- ASCIIChannel  adds 4 ascii digits indicating the length of the message -->
+    <channel  logger=   "Q2"
+              realm=    "TheChannelAdaptor-channel"
+              class=    "org.jpos.iso.channel.ASCIIChannel"
+              packager= "org.jpos.iso.packager.GenericPackager">
+
+        <!-- We can use this property if our packager is the GenericPackager -->
+        <property name="packager-config" value="jar:packager/iso93ascii.xml" />
+        <!-- <property name="packager-config" value="jar:packager/iso93binary.xml" /> -->
+        <!-- <property name="packager-config" value="cfg/my_packager_config.xml" /> -->
+
+        <property name="host" value="127.0.0.1" />
+        <property name="port" value="9966" />
+
+        <!--
+        <filter class="org.jpos.iso.filter.YourIncomingFilter"
+                direction="incoming" />
+        <filter class="org.jpos.iso.filter.YourOutgoingFilter"
+                direction="outgoing" />
+        -->
+    </channel>
+
+    <!--  "in": the channel adaptor will read from this queue and
+                send the message to the remote host
+
+          "out": the channel adaptor will receive a reply message from the
+                 remote host and output ("out") it to this queue.
+                 (we're ignoring the replies in this example)
+    -->
+
+    <in>queue-send</in>
+    <out>queue-receive</out>
+
+    <reconnect-delay>10000</reconnect-delay>
+
+</channel-adaptor>
+

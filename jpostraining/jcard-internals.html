@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+    <!--    Este documento html es para ser usado con Remarkjs
+            https://remarkjs.com
+            https://github.com/gnab/remark
+    -->
+  <head>
+    <title>Title</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+      @import url('https://fonts.googleapis.com/css?family=Ubuntu');
+
+      /* don't change color of visited */
+      a, a:visited, a:hover, a:active {
+        color: blue;
+      }
+
+      body { /* font-family: 'Droid Serif'; */
+              font-family: 'Ubuntu';
+      }
+
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+
+      h1 { text-align: center; }     /* los titulos van centrados */
+
+      .remark-slide-content { font-size: 18pt; }
+      .remark-slide-number  { font-size: 50%; }
+
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      .remark-code { font-size: 85%; }
+      .remark-inline-code { color: indianred; }
+      .remark-code-line-highlighted { background-color: #0000ff; }
+
+
+
+
+      /* paragrah classes */
+      .topleftminititle {
+              font-family: 'Yanone Kaffeesatz';
+              font-weight: normal;
+              font-size: 16pt;
+              position: absolute;
+      }
+
+      li { margin-bottom: 0.3em; }
+
+      .bigpara { font-size: 28pt; }
+      .smallpara { font-size: 14pt; }
+
+      blockquote { font-style: italic; }
+
+      /* image classes */
+      .onebigimg   img { width: 100%; }
+      .onebigimg80 img { width:  80%; }
+      .onebigimg60 img { width:  60%; }
+
+      /* logos at the botom */
+      .bottomlogo { position: absolute;
+                    bottom: 50px; width: 100%;
+                    opacity: 0.5;
+      }
+
+      /* right: igual al padding que tiene remark-slide-content
+         padding-bottom: para alinearlo con el logo de jpos y que quede lindo
+       */
+      .bottomlogo.right  { right: 4em; padding-bottom: 10px;}
+
+    </style>
+  </head>
+
+  <body>
+    <textarea id="source">
+class: center, middle
+
+[jposlogo]:   images/logo_jpos_170x116.png         "jPOS Logo"
+[transalogo]: images/logo_transactility_220x72.png "Transactility Logo"
+
+# jCard/ jPTS
+
+.bottomlogo.left[ ![jpos.org][jposlogo] ]
+.bottomlogo.right[ ![transactility.com][transalogo] ]
+
+---
+
+class: center
+
+# Welcome
+<br><br><br>
+
+### Barzilai Spinak &lt; barspi@transactility.com >
+
+???
+
+
+---
+
+exclude: true
+
+# Agenda
+
+* What is jCard
+    * yyyyyyyyyy
+
+???
+
+---
+
+# What is jCard
+
+A powerful Card Management System, that enables the creation of complete issuer, acquirer and card
+management systems (like credit, debit, stored-value, gift or loyalty card systems).
+
+An interface between the ISO-8583 world and double-entry accounting system that lets companies create
+extremely powerful solutions from one end of electronic payments transactions to the other.
+Coupled with jPOS CMF and jPOS.org’s miniGL, it provides the best of breed card management engine in the market.
+
+???
+
+TODO: HABLAR DE LICENSE?
+
+"jCard is offered under the new "Business Source License" which mixes the benefits of being involved with the jPOS core development team and being up to date with the latest jCard developments while you are developing your closed source solution, and the benefits of having an open source license after a given period, usually when you development ends."
+
+---
+
+# jCard components
+
+jCard is build on the standard components of the jPOS ecosystem, plus a lot of custom code
+for business logic and configuration
+
+* jPOS<br>
+  * QServers, Channels, Packagers, MUXes, etc
+  * TransactionManager
+  * jPOS-CMF
+
+* jPOS-EE<br>
+   * dbsupport (currently PostgreSQL, but can handle others)
+   * miniGL
+   * sysconfig, ee-user, ee-rest, jetty
+   * cryptoservice
+   * QI
+
+---
+
+# jCard modules
+
+```bash
+    jcard
+    |-- [...]
+    |
+    `-- modules
+        |
+        `-- app       # QI user interface
+        |
+        `-- jcard     # core iso-8583 jCard
+        |
+        `-- restapi   # REST interface into jCard
+```
+<br><br>
+
+They can be run separately, impacting the same db server
+
+???
+
+---
+
+# Switch participant
+
+.smallpara[
+```xml
+<txnmgr class="org.jpos.transaction.TransactionManager">
+    <!-- Some top-level participants -->
+    <participant ... />
+    <participant ... />
+
+    <participant class="org.jpos.jcard.Switch">
+        <property name="transactionName1"
+                  value="group1 group2 group3 ..." />
+
+        <property name="transactionName2"
+                  value="group2 group3 group4 ..." />
+    </participant>
+
+    <group name="group1">
+        <participant ... />
+    </group>
+
+    <group name="group2">
+        <participant ... />      
+    </group>
+
+    <!-- More top-level participants -->
+    <participant ... />
+    <participant ... />
+</txnmgr>
+```
+]
+
+---
+
+# Switch participant
+
+.smallpara[jCard module, ISO-8583]
+
+.smallpara[
+```xml
+<txnmgr...>
+  <property name="queue" value="JCARD.TXN" />
+
+ <participant class="org.jpos.jcard.PrepareContext" />
+ <participant class="org.jpos.transaction.Open" />
+
+ <participant class="org.jpos.jcard.Switch" logger="Q2" realm="Switch">
+    <property name="100.30" 
+              value="balanceinquiry prepareresponse logit close sendresponse" />
+
+    <property name="100.30.182" 
+              value="customer-balanceinquiry prepareresponse logit close sendresponse" />
+    <property name="100.00" 
+              value="authorization prepareresponse logit close sendresponse" />
+```
+]
+
+---
+
+# Switch participant
+
+.smallpara[jCard module, ISO-8583]
+
+.smallpara[
+```xml
+<txnmgr...>
+  <property name="queue" value="JCARD.TXN" />
+
+ <participant class="org.jpos.jcard.PrepareContext" />
+ <participant class="org.jpos.transaction.Open" />
+
+ <participant class="org.jpos.jcard.Switch" logger="Q2" realm="Switch">
+    <property name="100.30" 
+              value="balanceinquiry prepareresponse logit close sendresponse" />
+
+    <property name="100.30.182" 
+              value="customer-balanceinquiry prepareresponse logit close sendresponse" />
+    <property name="100.00" 
+              value="authorization prepareresponse logit close sendresponse" />
+```
+]
+
+
+---
+
+# jCard ER diagram (oldish)
+
+.center.onebigimg60[![](images/jcard-er-diagram.jpg)]
+
+---
+
+# miniGL chart of accounts
+
+.center.onebigimg60[![](images/minigl_chart_and_accounts.png)]
+
+
+
+---
+
+# jCard Transaction Managers
+
+We have two TM's.
+
+One for the ISO-8583 world, and one for the REST world
+
+---
+exclude: true
+
+
+    </textarea>
+
+    <script src="js/remark-latest.min.js"></script>
+    <script>
+      var slideshow = remark.create({
+          highlightLines: true,
+          highlightStyle: "sunburst"
+      });
+    </script>
+  </body>
+</html>
+

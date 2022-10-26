@@ -1,0 +1,1254 @@
+<!DOCTYPE html>
+<html>
+    <!--    Este documento html es para ser usado con Remarkjs
+            https://remarkjs.com
+            https://github.com/gnab/remark
+    -->
+  <head>
+    <title>Title</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+      @import url('https://fonts.googleapis.com/css?family=Ubuntu');
+
+      /* don't change color of visited */
+      a, a:visited, a:hover, a:active {
+        color: blue;
+      }
+
+      body { /* font-family: 'Droid Serif'; */
+        font-family: 'Ubuntu';
+      }
+
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+
+      h1 { text-align: center; }     /* los titulos van centrados */
+
+      .remark-slide-content { font-size: 18pt; }
+      .remark-slide-number  { font-size: 50%; }
+
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      .remark-code { font-size: 85%; }
+      .remark-inline-code { color: indianred; }
+      .remark-code-line-highlighted { background-color: #0000ff; }
+
+      .smaller-code90p { font-size: 90%; }
+      .smaller-code85p { font-size: 85%; }
+      .stronger { font-size: 110%; font-weight: bolder; }
+
+
+      .consoleTextInline {  font-family: 'Ubuntu Mono'; font-size: 90%;
+                            background-color: black;
+                            padding: 0.1em 0.2em;
+      }
+
+      /* text colors */
+      .grayed50 { color: rgb(50%, 50%, 50%); }
+      .jposred    { color: rgb(237,  27,  36); }
+      .jpospurple { color: rgb(108,  73, 201); }
+      .greenConsole { color: rgb(0,  250, 0); }
+
+      /* paragrah classes */
+      .topleftminititle {
+              font-family: 'Yanone Kaffeesatz';
+              font-weight: normal;
+              font-size: 16pt;
+              position: absolute;
+      }
+
+      li { margin-bottom: 0.3em; }
+      li > p {  margin-bottom: 0.3em; }
+     
+      .bigpara { font-size: 28pt; }
+      .smallpara { font-size: 14pt; }
+
+      blockquote { font-style: italic; }
+
+      /* image classes */
+      .onebigimg   img { width: 95%; }
+      .onebigimg80 img { width:  80%; }
+      .onebigimg75 img { width:  75%; }
+
+      /* logos at the botom */
+      .bottomlogo { position: absolute;
+                    bottom: 20px;
+                    opacity: 0.5;
+      }
+
+      /* right: igual al padding que tiene remark-slide-content
+         padding-bottom: para alinearlo con el logo de jpos y que quede lindo
+       */
+      .bottomlogo.right     { right: 2em; padding-bottom: 10px; }
+      .bottomlogo.right img { width: 100px; }
+      .bottomlogo.left      { left:  2em;} 
+      .bottomlogo.left  img { width: 100px; left:  2em;} 
+      .img50pct img { width: 50%; }
+
+    </style>
+  </head>
+
+  <body>
+    <textarea id="source">
+layout: true
+
+[jposlogo]:   images/logo_jpos_170x116.png         "jPOS Logo"
+[transalogo]: images/logo_transactility_220x72.png "Transactility Logo"
+
+
+.bottomlogo.left[ ![jpos.org][jposlogo] ]
+.bottomlogo.right[ ![transactility.com][transalogo] ]
+
+---
+
+class: center, middle
+
+[jposlogo]:   images/logo_jpos_170x116.png         "jPOS Logo"
+[transalogo]: images/logo_transactility_220x72.png "Transactility Logo"
+
+# FIRST DAY
+
+
+
+---
+
+class: center
+
+# Welcome
+<br><br><br>
+
+## Barzilai Spinak &lt; barspi@transactility.com >
+
+
+
+---
+
+# Agenda
+
+* Introduction to jPOS.org / Transactility, Inc.
+* Licensing, jPOS, jPOS-EE, resources
+* jPOS and ISO-8583
+* Intro to jPOS library and "ecosystem"
+* Mini hands-on: the jPOS-template
+* More in-depth jPOS lib
+* `Q2` and the `QBean` lifecycle
+
+---
+
+exclude: true
+
+<!-- ============ INTRO ============ -->
+
+BBBBBBBBBBBBBBBBBBBBBBBB Completar sección:
+
+---
+
+# jPOS.org and Transactility, Inc.
+
+<br><br>
+
+|                                               |                                                               |
+| --------------------------------------------- | -------------------------------------------------------------:|
+|![jpos.org][jposlogo]                          | <!-- empty -->                                                |
+| .grayed50[Home site of the jPOS.org project]  | ![transactility.com][transalogo]                              |
+| <!-- empty -->                                | .grayed50[_"Commercial Licensing and Support for jPOS.org"_]  |
+
+
+---
+
+# The jPOS project
+
+.center.img50pct[![8583 flavors](images/apr.jpg)]
+
+Alejandro Revilla
+- The Creator
+- a.k.a. `@apr`
+
+---
+
+# The jPOS project
+
+* Used in more than .jposred[110 countries] on five continents
+
+* From .jpospurple[Fortune 100] and .jpospurple[Fortune 500] small retailers and startups
+
+
+---
+
+# The jPOS project
+
+Developed as an open source project, with dual license.<br>
+(GNU AFFERO GENERAL PUBLIC LICENSE)
+* The code is free to study, test, change
+* If you want to use it commercially without releasing your own code,
+you can buy a commercial license
+
+.center[`http://www.transactility.com/licensing`]
+
+
+---
+
+# Open source repositories
+
+<br>
+
+* jPOS<br>
+  http://github.com/jpos/jPOS
+* jPOS-EE<br>
+   http://github.com/jpos/jPOS-EE  .smallpara[(more on jPOS-EE later)]
+
+---
+
+# Other resources
+
+* Community discussion group<br>
+  https://groups.google.com/forum/#!forum/jpos-users
+
+* Slack (community, ask for invitation)
+
+* Mattermost (for our paying clients and ongoing projects)
+
+* Blog<br>
+  http://jpos.org/blog/
+
+* Programmer's Guide (_proguide_)<br>
+  http://jpos.org/doc/proguide.pdf
+
+
+---
+
+exclude: true
+
+<!-- ============ jPOS approach to ISO-8583 (20 min) ============ -->
+
+
+---
+
+# ISO-8583
+
+**International Organization for Standardization**
+
+_Financial transaction card originated messages_
+
+The standard _"specifies a common interface by which financial transaction
+card originated messages may be interchanged between acquirers and card issuers."_
+
+It specifies message structure, format and content, data elements and values for data elements.
+
+
+---
+
+# jPOS approach to ISO-8583
+
+jPOS is an open-source, mission-critical enterprise software, based on
+the International Organization for Standardization transaction card
+originated messages standard (ISO 8583).
+
+
+jPOS was born as a way of handling ISO-8583 messaging and connectivity.
+
+It has grown into a large family of products that use jPOS at their core, along other technologies and proprietary code, to integrate solutions at all levels in the payments and card industry.
+
+---
+
+# ISO-8583 "generations"
+<p>&nbsp;</p>
+.bigpara[.center[
+* Version 1987
+* Version 1993
+* Version 2003
+]]
+
+---
+
+# ISO-8583 flavors
+<p>&nbsp;</p>
+.onebigimg[![8583 flavors](images/iso8583flavors.png)]
+
+
+---
+
+# jPOS-CMF
+
+.center[jPOS Common Message Format]
+
+It's an ISO-8583 specification based on **`v2003`**.
+
+Used internally and for intercommunication in our products such as jPTS and jCard.
+
+* https://github.com/jpos/jPOS-CMF
+* http://jpos.org/doc/jPOS-CMF.pdf
+
+???
+
+# Show/Introduce jPTS diagram
+
+Explain a little about how CMF is used in STATIONS and FILTERS
+
+---
+
+# jPOS-EE modules
+
+* jPOS-EE is an open source repository for jPOS modules
+* Think of it as "plugins", or "add-ons" that don't need to be in the main jPOS repository
+* They are useful to add functionality in a standard way
+* In the upcoming "hands-on" session, we will use the "server simulator" module form jPOS-EE
+
+.center[ https://github.com/jpos/jPOS-EE ]
+
+???
+
+# jPOS-EE modules (2 min)
+
+* just a couple of minutes, quickly going over the github dirs
+
+---
+
+# Some jPOS components
+
+* `ISOMsg`
+  * a java class representing an ISO-8583 message
+  * methods to get/set fields, or "data elements"
+
+* Servers
+  * `QServer`
+  * they **listen** on a TCP port
+  * have an associated channel (_`ISOChannel`_)
+
+* Clients
+  * `ChannelAdaptor`, `OneShotChannelAdaptor`
+  * they **initiate** a TCP connection to a remote  .jpospurple[host:port]
+  * also have an associated channel
+
+---
+
+# Some jPOS components
+
+* Channels (_`ISOChannel`_)
+  * `ASCIIChannel`, `AmexChannel`, `BASE24Channel`, `VAPChannel`, ...
+  * a channel "wraps" the message (usually there's at least a header indicating message length)
+
+
+
+* Packagers (_`ISOPackager`_)
+  * `XMLPackager`, `BASE24Packager`,  `ISO93BPackager`, `PostPackager`, **`GenericPackager`**, ...
+  * they know how to encode/decode (`pack()` / `unpack()`) each field in a message, including bitmaps and headers
+
+---
+
+# Some jPOS components
+
+* Request Listeners (_`ISORequestListener`_)
+  * `IncomingListener`, `BSHRequestListener`, `GroovyRequestListener`
+  * [`process()`](http://jpos.org/doc/javadoc/org/jpos/iso/ISORequestListener.html#process-org.jpos.iso.ISOSource-org.jpos.iso.ISOMsg-)
+    each incoming message (usually attached to a `QServer`, but it could be to a `MUX` too)
+  * must be quick, so as not to block incoming messages
+  * commonly used to prepare a `Context` and dispatch it to the `TransactionManager` (more on that tomorrow)
+
+* Multiplexers (_`MUX`_)
+  * `QMUX`, `MUXPool`
+  * they match incoming responses to outstanding requests
+  * normally used in association to a **persistent** client connection
+
+---
+
+# Some jPOS components
+
+* Filters (_`ISOFilter`_)
+  * `DebugFilter`, `MD5Filter`, `BSHFilter` ...
+  * do extra incoming/outgoing transformation of `ISOMsg` at the edges
+
+* Spaces (_`Space`_)
+  * `TSpace`, `JESpace`, `JDBMSpace`, ...
+  * messaging queues storing generic objects
+  * native jPOS inter-component communication
+
+
+
+---
+
+# Server or client?
+
+From a **networking** standpoint:
+
+* Server **waits** for connections (e.g. on a TCP port)
+
+* Client **initiates** connection to the server
+
+<br><br>
+
+From a **messaging** standpoint:
+
+* Client **sends requests**  (e.g. ISO8583 request)
+* Server **returns responses**
+
+
+---
+
+
+<!-- ========================== jPOS-template ========================== -->
+
+# The jPOS-template
+
+* A simple "skeleton" project that can be used to start new jPOS-based developments or tests
+
+* Hosted on https://github.com/jpos/jPOS-template
+
+* `master` branch is single module (`src` at the root)
+
+* `multimodule` branch is multimodule (`modules` dir at the root, with each module as a subdir)
+
+---
+
+# The jPOS-template
+
+### Let's do a quick test
+
+Check we have the following installed:
+* Java 8 or above (8 or 11 recommended)
+  * `java -version`
+  * `javac` should work too!
+* a `git` client
+* Gradle 7+
+  * `gradle -version`
+  * You can also use the included wrapper  
+    `./gradlew`
+---
+
+# The jPOS-template
+
+* From the command line, create a clean directory for this course's demos, and **change** to it
+```bash
+$ mkdir jposdemo
+$ cd jposdemo
+```
+
+* Clone jPOS-template
+```bash
+$ git clone https://github.com/jpos/jPOS-template.git
+```
+
+---
+
+# The jPOS-template
+
+.smaller-code85p[
+```bash
+jPOS-template
+    |-- COPYRIGHT...
+    |-- bin
+    |   |-- q2
+    |   |-- start
+    |   `-- stop
+  [...]
+*   |-- build.gradle
+    |-- jpos-app.gradle
+    `-- src
+        `-- dist
+            |-- bin
+            |   |-- bsh
+            |   |-- q2
+            |   |-- q2.bat
+            |   |-- start
+            |   `-- stop
+*           |-- deploy
+            |   |-- 00_logger.xml
+            |   `-- 99_sysmon.xml
+            `-- log
+                `-- q2.log
+```
+]
+
+---
+
+# The jPOS-template
+
+Let's build the project!
+```bash
+$ gradle installApp
+```
+
+.smallpara[(The first time, it will download a bunch of library dependencies)]
+
+...wait...
+
+--
+<!-- incremental -->
+
+We should get the .consoleTextInline.greenConsole[BUILD SUCCESSFUL] message
+
+--
+<!-- incremental -->
+
+Now let's take another look at the directory tree!
+
+--
+<!-- incremental -->
+
+Let's run it!
+```bash
+$ ./build/install/jPOS-template/bin/q2
+```
+
+--
+<!-- incremental -->
+
+And let's kill it with **`Ctrl-C`**
+
+
+<!-- =====================END OF jPOS-template ========================== -->
+---
+
+# Q & A
+
+.onebigimg[ ![Q&A](images/bigbluequestion.jpg) ]
+
+???
+
+(break, 10 minutes)
+
+---
+
+# Channels & Packagers
+
+.onebigimg[![](images/isomsg_with_channel_packager.png)]
+
+.smallpara[
+header:
+* typically encodes **length** of message
+* may have other static/dynamic metadata
+
+trailer:
+* some protocolos may need a trailer<br>
+  most don't
+]
+---
+
+# Message length
+
+* Encoded in the *header*
+* Different examples of _`ISOChannel`_
+  * 4 ASCII characters:  `ASCIIChannel`
+  * 2-byte binary word, network byte order: `PostChannel`
+  * 4 packed BCD digits (2 bytes): `BCDChannel`
+
+* `XMLChannel` doesn't need a length: it's implicit in the format.
+* `PadChannel` uses a streaming reading method and doesn't use headers/trailers.
+
+
+
+---
+
+# Some other channel types
+
+* `AmexChannel`
+* `BASE24Channel`
+* `CSChannel`
+* `GICCChannel`
+* `NACChannel`
+* `NCCChannel`
+* `RawChannel`
+* `VAPChannel`
+* `X25Channel`
+
+
+---
+# ISOMsg & Packagers
+
+.onebigimg[![](images/jpos_approach_packagers.png)]
+
+---
+
+# ISOMsg & Packagers
+
+```java
+ISOPackager p= new GenericPackager("iso93ascii.xml");
+ISOMsg m= new ISOMsg();
+m.setMTI("0800");
+m.set(11, "000001");
+m.set(70, "001");
+m.setPackager(p);
+
+...
+
+byte[] packedMessage= m.pack();
+```
+
+???
+
+* Normally we let the **channel** take care of the packager
+
+---
+
+# ISOServer
+
+.onebigimg[![](images/isoserver.png)]
+
+???
+
+* **Clients** are usually **remote** nodes (either running jPOS or not)
+
+---
+exclude: true
+
+# Channels and Filters
+
+.onebigimg[![](images/channelsfilters.png)]
+
+---
+
+# Multiplexers
+
+.onebigimg[![](images/multiplexers1.png)]
+
+Multiplexers match an `ISOMsg` response to its original request.
+
+---
+
+# Multiplexers
+
+.onebigimg[![](images/multiplexers2.png)]
+
+Multiplexers match an `ISOMsg` response to its original request.
+
+---
+
+# Multiplexers
+
+#### Multiplexer key
+
+* Default to MTI, plus field 41 (TID) + field 11 (STAN)
+* Can be customized: 
+
+.smaller-code90p[
+```xml
+<mux class="org.jpos.q2.iso.QMUX" name="MyMUX">
+    <key>11, 41, 42</key>
+    <in>in-queue-name</in>
+    <out>out-queue-name</out>
+
+    <ready>my-channeladaptor.ready</ready>
+</mux>
+
+```
+]
+---
+
+# Multiplexers
+
+.center.onebigimg75[![](images/multiplexers_unhandled.png)]
+
+* Unhandled messages (no match found) can be passed to a
+`ISORequestListener` for processing.
+* An `unhandled` space queue can also be specified to send unmatched messages
+for someone else to handle (or until they timeout)
+
+---
+
+## .center[MUXPool]
+
+.onebigimg[ ![MUXPool](images/MUXPool.png) ]
+
+---
+
+# jPOS Spaces
+
+> jPOS Space is a general-purpose coordination component inspired after the
+  **Linda Coordination Language**
+
+Common operations:
+
+* **`out`** – puts an entry in the `Space` under a certain key, _queueing_ objects under the same key if one already exists.
+* **`in`**  – removes and returns an entry from the Space (blocking operation)
+* **`rd`**  – reads an entry from the Space without removing it (blocking operation)
+
+
+Read the Proguide and javadoc for more details<br>
+> http://jpos.org/doc/javadoc/org/jpos/space/Space.html
+
+---
+
+# Some `Space` implementations
+
+* TSpace
+* JDBMSpace
+* JESpace
+* ReplicatedSpace
+* RedisSpace
+
+---
+
+exclude: true
+
+BBBBBBBBBBBBBBBBBBBBB TODO
+Un slide sobre los loggers?  Acá o dónde?
+Fijarse el slide de apr
+
+---
+
+# Q2 and QBeans
+
+jPOS systems can be run as standalone applications (the recommended way that
+we're going to use in this course).
+
+**`Q2`** is the entry point to the application, and serves as a container to
+"services" called **`QBean`**s.
+
+> `QBean`s are `MBean`s (see JMX specs) that implement the `Q2`’s lifecycle
+  (**`init`/`start`/`stop`/`destroy`**) set of operations.
+  `Q2` takes care of registering them with the system’s `MBeanServer`.
+.right.smallpara[jPOS Programmer's Guide (proguide)]
+
+We'll get deeper into it later, when we do some hands-on demos.
+
+
+---
+
+# Q2 and QBeans
+
+* `QBean` descriptors are XML files
+
+* Usually go into the `deploy` directory, which `Q2` scans in alphanumerical order and deploys each `QBean`
+
+* It's customary to prefix file names with 2 digits to ensure a specific order of deployment (e.g. `05_mybean.xml`)
+
+* The `deploy` directory is continuously monitored for changes, and `QBeans` are (re/un)deployed accordingly
+
+* When `Q2` shuts down, `QBeans` will be undeployed in reverse order
+
+
+---
+
+# Q2 and QBeans
+
+.smallpara[
+#### General structure of a `QBean` descriptor
+
+
+.smaller-code90p[```xml
+<element  name="myqbean" class="pack.pack.Clazz"
+          logger="Q2" realm="myqbean">
+
+    <attr name="myAttribute" type="java.lang.Integer">8000</attr>
+
+    <property name="my-property"  value="The Value" />
+    <property name="another-prop" value="qwert1234" />
+
+    <custom-xml>
+        <any-valid-xml-here />
+    </custom-xml>
+</element>
+```]
+
+* root `element` can be called anything, but certain names are registered in `QFactory.properties`
+* a **unique** name for each `QBean` is highly recommended
+* `attr`s will be "injected" into the instance (e.g. calling `setMyAttribute(8000)`)
+* if the `QBean` implements [`Configurable`](http://jpos.org/doc/javadoc/org/jpos/core/Configurable.html),
+  properties will be passed to the `setConfiguration(Configuration cfg)` method, and the object will poll
+  them and configure itself
+* similarly, if it implements [`XmlConfigurable`](http://jpos.org/doc/javadoc/org/jpos/core/XmlConfigurable.html), then
+`setConfiguration(Element e)` will be called, and the object can interpret any custom inner XML
+]
+<!-- .center.onebigimg[ ![](images/qbean_descriptor.png) ] -->
+
+
+---
+
+class: middle
+
+# END OF FIRST DAY
+
+
+---
+
+class: center, middle
+
+# SECOND DAY
+
+
+---
+
+# Agenda
+
+* Quick overview of first day
+* Hands-on: Hello jPOS!
+* Packagers and `GenericPackager`
+* Q & A
+
+---
+
+<!-- ============== SERVER SIMULATOR =============== -->
+
+# Hands-on: Hello jPOS!
+
+We'll implement a server with a _request listener_ that will do some trivial
+processing of the message and send a response back.
+
+Then we'll extend our system by adding a client channel that will send
+a modified copy of the message to some remote node.
+
+### Core concepts
+* creating a new project from the jPOS-template
+* adding `gradle` dependencies
+* `QBean` deployment descriptors used by `Q2`
+* servers, channel adaptors (clients), channels, packagers, request listeners,
+spaces, and queues
+* basic `ISOMsg` handling
+
+
+---
+
+# Hands-on: Hello jPOS!
+
+* Change into our course dir that we created yesterday
+.smallpara[
+```bash
+$ cd ${whatever}/jposdemo
+```
+]
+
+We're going to add a dependency to `build.gradle`
+
+Remember:
+
+.smallpara[
+```bash
+ jPOS-template
+    |
+  [...]
+*   |-- build.gradle
+    |-- jpos-app.gradle
+    `-- src
+        `-- dist
+            |
+          [...]
+            |
+*           `-- deploy
+                |-- 00_logger.xml
+                `-- 99_sysmon.xml
+```
+]
+
+
+---
+
+# Hands-on: Hello jPOS!
+
+* Edit `build.gradle` and add this dependency:
+
+```gradle
+dependencies {
+...
+    implementation  group:'org.jpos.ee',              // *
+                    name:'jposee-server-simulator',
+                    version:'2.2.+'
+...
+}
+```
+
+We can use the short syntax: 
+
+```gradle
+implementation 'org.jpos.ee:jposee-server-simulator:2.2.7-SNAPSHOT'
+```
+<br>
+<br>
+<br>
+ \* .smallpara[_Older versions Gradle's Java plugin  would use `compile` instead of `implementation`_]
+???
+
+* add server simulator dependency
+* **show the jPOS-EE module in github**
+* `gradle installResources`, **look at the extracted files**
+* look into `05_serversimulator.xml`, COMPARE with DIAGRAM
+* look into request listener/beanshell script
+* continue with normal intro webinar as always.
+* Remember to talk a bit about **SPACES again**, go back to the slides
+
+---
+
+# Hands-on: Hello jPOS!
+
+Let's install the resources that came with the dependency modules
+```bash
+$ gradle installResources
+```
+Nice...
+<br/><br/>
+But we want nicer versions of those files that we can download from:  http://jpos2daycourse.herokuapp.com/files/hellojpos/
+
+---
+
+# Q & A
+
+.onebigimg[ ![Q&A](images/bigbluequestion.jpg) ]
+
+???
+
+mini break 5 minutes, if needed
+
+---
+
+<!-- =============== PACKAGERS =============== -->
+
+# Packagers and Field Packagers
+
+* Packagers implement `interface ISOPackager`
+
+```java
+byte[] pack(ISOComponent m) throws ISOException;
+
+int unpack(ISOComponent m, byte[] b) throws ISOException;
+```
+
+* `abstract class ISOBasePackager` is a good starting point to create _your
+own custom packagers_ (check package `org.jpos.iso.packager.*`)
+
+* Packagers work together with `ISOFieldPackager`'s<br>
+  There are lots of implementations, following the `IF*` naming convention
+  (check package `org.jpos.iso.*`)
+
+* Read "Chapter 4. Packagers" in the _Programmer's Guide_
+
+???
+
+* Show http://jpos.org/doc/javadoc/org/jpos/iso/packager/package-summary.html
+
+---
+
+# Packagers and Field Packagers
+
+### `GenericPackager`
+
+* It's a packager that uses an external XML configuration file
+* 99% of the time, that's all you need (no need to program your own packager class!)
+* Sometimes you may need to program a specific `ISOFieldPackager` and that's all
+
+---
+
+# Packagers and Field Packagers
+
+Let's play with the packagers in *Hello jPOS!*
+
+* `packager-logger` property for debugging
+
+???
+
+# GenericPackager (15 min)
+
+* Show `my_packager_config.xml`
+* Study the file, show them the commented-out field 44
+* go back to the serversimulator and download the my_packager_config.xml into `cfg/`
+* Send them to download http://jpos2daycourse.herokuapp.com/files/my_packager_config.xml
+* change the client ascii channel to use the new packager config
+* Play with field 44 and try again. **Use fixed and variable length encodings**
+
+---
+
+class: center, middle
+
+# END OF SECOND DAY
+
+
+---
+
+class: center, middle
+
+# THIRD DAY
+
+
+---
+
+# Agenda
+
+
+* Quick overview of second day
+* Transaction Manager
+* Hands-on: simple gateway
+* Analysis of `QueryHost` and `SendResponse`
+* Create a Java participant if time permits
+* Q & A and discussion as time permits
+
+---
+
+# TransactionManager
+
+* We use the `TransactionManager` to handle the business logic in a reusable and modularized manner
+* It's another _`QBean`_ that is described by an XML file into the `deploy` directory
+* A transaction is usually represented by an instance of the class `org.jpos.transaction.Context`
+* The transaction is executed by a sequence of _`TransactionParticipant`_'s that are
+  called in order and they pass the `Context` object from one to the other
+* The `TransactionManager` takes its transactions (i.e., `Context` instances) from a configurable space queue
+
+---
+
+# TransactionManager config overview
+
+.smallpara[
+```xml
+<txnmgr class="org.jpos.transaction.TransactionManager">
+    <!-- Some top-level participants -->
+    <participant ... />
+    <participant ... />
+
+    <participant class="org.jpos.jcard.Switch">
+        <property name="transactionName-1" value="group1 group2 group3 ..." />
+        <property name="transactionName-2" value="group2 group3 group4 ..." />
+        <property name="transactionName-3" value="group3 group5 group8 ..." />
+    </participant>
+
+    <group name="group1">
+        <participant ... />
+        <participant ... />
+        <participant ... />
+    </group>
+
+    <group name="group2">
+        <participant ... />
+        <participant ... />      
+    </group>
+
+    <!-- More top-level participants -->
+    <participant ... />
+    <participant ... />
+</txnmgr>
+```
+]
+
+---
+
+# TransactionManager
+
+.onebigimg[ ![](images/tm_example.png) ]
+
+---
+
+# TransactionManager
+
+.smaller-code90p[
+```java
+ public interface TransactionParticipant extends TransactionConstants {
+
+     public int  prepare (long id, Serializable context);
+
+     default void commit(long id, Serializable context) { }
+     default void abort (long id, Serializable context) { }
+
+}
+```
+
+```java
+public interface TransactionConstants {
+    int ABORTED  = 0;
+    int PREPARED = 1;
+    int RETRY    = 2;
+    int PAUSE    = 4;
+
+    int NO_JOIN  = 0x40;
+    int READONLY = 0x80;
+
+    int FAIL = READONLY | NO_JOIN;
+}
+```
+]
+---
+
+# TransactionManager
+
+* It uses a 2-phase commit protocol:
+  * first, the `prepare()` method of every participant is called, in order.<br>
+  * the `prepare()` methods return success (`PREPARED`) or failure (`ABORTED`)
+  * if .stronger[all] participants succeeded, then we enter the _commit phase_ and each `commit()` method is called
+  * .stronger[_as soon as one_] of the participants indicates failure (i.e., it returns `ABORTED`), the _abort phase_ is
+     started, and each `abort()` method of all the thus-far participating participants is called
+
+---
+
+# TransactionManager
+
+```java
+     public int  prepare (long id, Serializable context);
+```
+
+We normally use the class `org.jpos.transaction.Context` as the context object that is
+passed from one participant to the next. It's like a `Map` of keys and values.
+
+We use some "well-known" key names in our systems.
+
+Later versions of jPOS (> 2.1.0), provide a convenient `enum org.jpos.transaction.ContextConstants`
+that can be used as "well-known" keys, but other custom ones can be used.
+
+ http://jpos.org/doc/javadoc/org/jpos/transaction/ContextConstants.html
+
+???
+
+* también decir que los participants se instancian UNA VEZ y no deberían guardar estado
+
+
+---
+
+# TransactionManager
+
+.onebigimg[ ![](images/tm_prepared.png) ]
+
+---
+
+# TransactionManager
+
+.onebigimg[ ![](images/tm_no_join.png) ]
+
+???
+
+**NO JOIN**
+
+---
+
+# TransactionManager
+
+.onebigimg[ ![](images/tm_abort.png) ]
+
+
+---
+
+# TransactionManager
+
+If a _`TransactionParticipant`_  implements  _`AbortParticipant`_,
+then its `prepareForAbort()` method will be called during the first phase.
+
+.onebigimg[ ![](images/tm_abort_participant.png) ]
+
+
+---
+
+# TransactionManager
+
+The `TransactionManager` uses the _flyweight pattern_.<br>
+Each participant is instantiated **once**, but multiple sessions
+can be run simultaneously. They can be paused and continued, and even persisted.
+
+Thus, it' **very important**, that a participant doesn't store transaction state
+into an _instance variable_. All transaction state must be stored in the **`Context`**.
+
+---
+
+# TransactionManager
+
+.onebigimg[ ![](images/tm_sessions.png) ]
+
+---
+
+# TransactionManager
+
+Some configuration options:
+* `queue`
+* `input-space`
+* `sessions`
+* `max-sessions`
+* `debug`
+* `profiler`
+
+---
+
+# TransactionManager
+
+### Sample Transaction Participants
+
+<table width="100%">
+  <tr>
+    <td>
+      • Prepare Context<br><br>
+      • Open Database<br><br>
+      • Switch<br><br>
+      • Message Sanity Checks<br><br>
+      • Validate Merchant<br><br>
+      • Validate Terminal<br><br>
+    </td>
+
+    <td>
+      • Query external hosts<br><br>
+      • Secure funds<br><br>
+      • Register GL transaction<br><br>
+      • Prepare ISO Response<br><br>
+      • Commit DB/Close<br><br>
+      • Send Response<br><br>
+    </td>
+  </tr>
+</table>
+
+---
+
+
+# Transaction?
+
+* A **message** that we need to process (such a `200.00` ISO-8583 authorization message)
+
+* A `TransactionManager` transaction (such as processing the `200.00` message)
+
+* An **accounting** ledger transaction, posted to a journal (such as a `GLTransaction` composed of several `GLEntry`s  when using miniGL in jCard)
+
+* A **database** transaction that sends a series of db queries/inserts/updates, and then it **commits** or **rolls-back**
+
+---
+
+# Q & A
+
+.onebigimg[ ![Q&A](images/bigbluequestion.jpg) ]
+
+???
+
+# short Q&A before hands-on
+
+(mini break, 10 minutes)
+
+
+---
+
+<!-- ============== SIMPLE GATEWAY =============== -->
+
+# Hands-on: simple gateway
+
+We'll implement a simple jPOS-based gateway.
+
+Requests will come in, they will be processed by a request listener and handed
+over to a transaction manager for executing the business logic.
+
+During the transaction manager process, the request will be forwarded to
+an external node for further processing, we'll get a response which
+will be used to return a response to the original requester
+
+
+---
+
+# Hands-on: simple gateway
+
+.onebigimg[ ![gateway](images/gateway-demo-full.png) ]
+
+---
+
+# Hands-on: simple gateway
+
+.onebigimg[ ![gateway](images/gateway-demo-mux.png) ]
+
+
+---
+
+exclude: true
+
+BBB PLACEHOLDER LAST SLIDE BBB
+
+    </textarea>
+
+    <script src="js/remark-latest.min_0.15.0.js"></script>
+    <script>
+      var slideshow = remark.create({
+          highlightLines: true,
+          highlightStyle: "sunburst"
+      });
+    </script>
+  </body>
+</html>
+

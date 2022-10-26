@@ -1,0 +1,41 @@
+<!DOCTYPE isopackager SYSTEM "genericpackager.dtd">
+<isopackager>
+    <!-- Simple configuration file for GenericPackager to show how to create one -->
+    <isofield id="0"    class="org.jpos.iso.IFA_NUMERIC"  length="4"    name="Message type indicator" pad="true"/>
+    <isofield id="1"    class="org.jpos.iso.IFA_BITMAP"   length="16"   name="Bitmap"/>
+
+    <isofield id="3"    class="org.jpos.iso.IFA_NUMERIC"  length="6"    name="Processing code" pad="true"/>
+    <isofield id="4"    class="org.jpos.iso.IFA_NUMERIC"  length="12"   name="Amount, transaction" pad="true"/>
+    <isofield id="7"    class="org.jpos.iso.IFA_NUMERIC"  length="10"   name="Transmission Date and Time" pad="true"/>  
+    <isofield id="11"   class="org.jpos.iso.IFA_NUMERIC"  length="6"    name="Systems trace audit number" pad="true"/>
+    <isofield id="12"   class="org.jpos.iso.IFA_NUMERIC"  length="6"    name="Time, Local transaction" pad="true"/>
+    <isofield id="13"   class="org.jpos.iso.IFA_NUMERIC"  length="4"    name="Date, Local transaction (MMdd)" pad="true"/>
+    <isofield id="17"   class="org.jpos.iso.IFA_NUMERIC"  length="4"    name="DATE, CAPTURE" />
+
+    <isofield id="32"   class="org.jpos.iso.IFA_LLNUM"    length="99"   name="ACQUIRING INSTITUTION IDENT CODE"/>
+    <isofield id="35"   class="org.jpos.iso.IFA_LLCHAR"   length="99"   name="Track 2 data"/>
+    <isofield id="37"   class="org.jpos.iso.IFA_NUMERIC"  length="12"   name="Retrieval reference number" pad="true"/>
+
+    <isofield id="38"   class="org.jpos.iso.IF_CHAR"      length="6"    name="AUTHORIZATION IDENTIFICATION RESPONSE" />
+    <isofield id="39"   class="org.jpos.iso.IF_CHAR"      length="2"    name="RESPONSE CODE" pad="true"/>
+    <isofield id="41"   class="org.jpos.iso.IF_CHAR"      length="16"   name="Card acceptor terminal identification" pad="true"/>
+    <isofield id="43"   class="org.jpos.iso.IF_CHAR"      length="40"   name="CARD ACCEPTOR NAME/LOCATION" />
+
+    
+    <isofield id="44"   class="org.jpos.iso.IFA_LLLCHAR"  length="27"   name="ADITIONAL RESPONSE DATA" />
+    <!-- <isofield id="44"   class="org.jpos.iso.IF_CHAR"      length="27"   name="ADITIONAL RESPONSE DATA" /> -->
+    
+
+    <isofield id="48"   class="org.jpos.iso.IFA_LLLCHAR"  length="999"  name="ADITIONAL DATA - PRIVATE"/>
+    <isofield id="49"   class="org.jpos.iso.IFA_NUMERIC"  length="3"    name="Currency code, transaction" pad="true"/>
+    <isofield id="52"   class="org.jpos.iso.IFA_BINARY"   length="8"    name="PIN DATA"/>
+    <isofield id="60"   class="org.jpos.iso.IFA_LLLCHAR"  length="999"  name="RESERVED PRIVATE"/>
+    <isofield id="61"   class="org.jpos.iso.IFA_LLLCHAR"  length="999"  name="RESERVED PRIVATE"/>
+    <isofield id="63"   class="org.jpos.iso.IF_CHAR"      length="19"   name="RESERVED PRIVATE"/>
+    <isofield id="70"   class="org.jpos.iso.IFA_NUMERIC"  length="3"    name="nNetwork Mngt" pad="true"/>
+    <isofield id="100"  class="org.jpos.iso.IF_CHAR"      length="11"   name="RECEIVING INSTITUTION IDENT CODE"/>
+    <isofield id="102"  class="org.jpos.iso.IFA_LLCHAR"   length="99"   name="ACCOUNT IDENTIFICATION 1"/>
+    <isofield id="103"  class="org.jpos.iso.IFA_LLCHAR"   length="99"   name="ACCOUNT IDENTIFICATION 2"/>
+    <isofield id="123"  class="org.jpos.iso.IFA_LLLCHAR"  length="999"  name="S-123 CRYPTOGRAFIC SERVICE MESSAGE"/>
+    <isofield id="126"  class="org.jpos.iso.IFA_LLLCHAR"  length="999"  name="S-126 ATM ADDIC. DATA OR POS PRE-AUTH/CHARGEBACK"/>
+</isopackager>
