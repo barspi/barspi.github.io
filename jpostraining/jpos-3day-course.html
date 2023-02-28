@@ -63,7 +63,7 @@
 
       li { margin-bottom: 0.3em; }
       li > p {  margin-bottom: 0.3em; }
-     
+
       .bigpara { font-size: 28pt; }
       .smallpara { font-size: 14pt; }
 
@@ -85,8 +85,8 @@
        */
       .bottomlogo.right     { right: 2em; padding-bottom: 10px; }
       .bottomlogo.right img { width: 100px; }
-      .bottomlogo.left      { left:  2em;} 
-      .bottomlogo.left  img { width: 100px; left:  2em;} 
+      .bottomlogo.left      { left:  2em;}
+      .bottomlogo.left  img { width: 100px; left:  2em;}
       .img50pct img { width: 50%; }
 
     </style>
@@ -415,7 +415,7 @@ Check we have the following installed:
 * a `git` client
 * Gradle 7+
   * `gradle -version`
-  * You can also use the included wrapper  
+  * You can also use the included wrapper
     `./gradlew`
 ---
 
@@ -622,7 +622,7 @@ Multiplexers match an `ISOMsg` response to its original request.
 #### Multiplexer key
 
 * Default to MTI, plus field 41 (TID) + field 11 (STAN)
-* Can be customized: 
+* Can be customized:
 
 .smaller-code90p[
 ```xml
@@ -850,7 +850,7 @@ dependencies {
 }
 ```
 
-We can use the short syntax: 
+We can use the short syntax:
 
 ```gradle
 implementation 'org.jpos.ee:jposee-server-simulator:2.2.7-SNAPSHOT'
@@ -1009,7 +1009,7 @@ class: center, middle
 
     <group name="group2">
         <participant ... />
-        <participant ... />      
+        <participant ... />
     </group>
 
     <!-- More top-level participants -->
@@ -1063,8 +1063,8 @@ public interface TransactionConstants {
   * first, the `prepare()` method of every participant is called, in order.<br>
   * the `prepare()` methods return success (`PREPARED`) or failure (`ABORTED`)
   * if .stronger[all] participants succeeded, then we enter the _commit phase_ and each `commit()` method is called
-  * .stronger[_as soon as one_] of the participants indicates failure (i.e., it returns `ABORTED`), the _abort phase_ is
-     started, and each `abort()` method of all the thus-far participating participants is called
+  * but, if .stronger[_one participant indicates failure_] (i.e., it returns `ABORTED`), we enter the _abort phase_
+    and call `abort()` for all the participants that have already participated during the _prepare phase_
 
 ---
 
