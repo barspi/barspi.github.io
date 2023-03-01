@@ -9,7 +9,7 @@
 
 
     <participant class="org.jpos.transaction.participant.QueryHost" >
-      <!-- <property name="continuations" value="false" /> -->
+      <property name="continuations" value="false" /> 
     </participant>
 
     <participant class="org.jpos.transaction.participant.SendResponse" />
