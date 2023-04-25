@@ -1,12 +1,15 @@
 <?xml version="1.0" ?>
-<channel-adaptor  name='ChannelAdaptor'  logger="Q2"  enabled="true"
-                  class="org.jpos.q2.iso.ChannelAdaptor">
+<channel-adaptor  class="org.jpos.q2.iso.ChannelAdaptor" name="ChannelAdaptor"
+                  logger="Q2"  realm="10-client-channel"
+                  enabled="true">
 
     <!-- ASCIIChannel  adds 4 ascii digits indicating the length of the message -->
-    <channel  logger=   "Q2"
-              realm=    "TheChannelAdaptor-channel"
-              class=    "org.jpos.iso.channel.ASCIIChannel"
-              packager= "org.jpos.iso.packager.GenericPackager">
+    <channel    name="TheClientChannel"
+                class="org.jpos.iso.channel.ASCIIChannel"
+                logger=   "Q2"
+                realm=    "TheChannelAdaptor-channel"
+
+                packager= "org.jpos.iso.packager.GenericPackager">
 
         <!-- We can use this property if our packager is the GenericPackager -->
         <property name="packager-config" value="jar:packager/iso93ascii.xml" />

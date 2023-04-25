@@ -11,14 +11,17 @@ import org.jpos.space.SpaceFactory;
 import java.util.Random;
 
 @SuppressWarnings("unused")
-public class HelloListener extends Log implements ISORequestListener, Configurable {
+public class HelloListener implements ISORequestListener, Configurable {
     private String greeting;
 
+    //------------------------------------
+
     @SuppressWarnings("unchecked")
-    public void setConfiguration (Configuration cfg) throws ConfigurationException
-    {
+    public void setConfiguration (Configuration cfg) throws ConfigurationException {
         greeting = cfg.get("greeting", "????");
     }
+
+    //------------------------------------
 
     public boolean process (ISOSource source, ISOMsg message) {
       // We receive 2 objects:

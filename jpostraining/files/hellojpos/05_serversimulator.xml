@@ -1,14 +1,15 @@
 <?xml version="1.0" ?>
-<server name="QSERVER_10000" logger="Q2"
-        class="org.jpos.q2.iso.QServer">
+<server class="org.jpos.q2.iso.QServer" name="QSERVER_10000"
+        logger="Q2">
 
     <attr name="port" type="java.lang.Integer">10000</attr>
 
-     <channel   name=     "SERVERCHANNEL_10000"
-                realm=    "TheServerChannel_10000"
-                logger=   "Q2"
-                class=    "org.jpos.iso.channel.XMLChannel"
-                packager= "org.jpos.iso.packager.XMLPackager">
+    <channel  name=     "SERVERCHANNEL_10000"
+              class=    "org.jpos.iso.channel.XMLChannel"
+              logger=   "Q2"
+              realm=    "TheServerChannel_10000"
+
+              packager= "org.jpos.iso.packager.XMLPackager">
 
         <!-- <property name="packager-logger" value="Q2" /> -->
         <!-- <property name="packager-realm" value="gp-packager-debug" /> -->
@@ -26,7 +27,6 @@
     <request-listener class="org.jpos.bsh.BSHRequestListener" logger="Q2">
         <property name="source" value="cfg/serversimulator.bsh" />
     </request-listener>
-
 
   
 <!--  Alternative: connects queues directly with no processing
