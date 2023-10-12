@@ -4,10 +4,10 @@
                   enabled="true">
 
     <!-- ASCIIChannel  adds 4 ascii digits indicating the length of the message -->
-    <channel    name="TheClientChannel"
-                class="org.jpos.iso.channel.ASCIIChannel"
-                logger=   "Q2"
-                realm=    "TheChannelAdaptor-channel"
+    <channel    name=   "TheClientChannel"
+                class=  "org.jpos.iso.channel.ASCIIChannel"
+                logger= "Q2"
+                realm=  "TheChannelAdaptor-channel"
 
                 packager= "org.jpos.iso.packager.GenericPackager">
 

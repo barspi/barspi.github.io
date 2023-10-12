@@ -23,8 +23,7 @@
         -->
     </channel>
 
-
-    <request-listener class="org.jpos.bsh.BSHRequestListener" logger="Q2">
+    <request-listener class="demo.HelloListener" logger="Q2">
         <property name="source" value="cfg/serversimulator.bsh" />
     </request-listener>
 

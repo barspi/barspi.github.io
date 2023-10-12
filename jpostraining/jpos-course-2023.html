@@ -39,6 +39,7 @@
 
       .smaller-code90p { font-size: 90%; }
       .smaller-code85p { font-size: 85%; }
+      .smaller-code75p { font-size: 75%; }
       .stronger { font-size: 110%; font-weight: bolder; }
 
 
@@ -48,9 +49,9 @@
       }
 
       /* text colors */
-      .grayed50 { color: rgb(50%, 50%, 50%); }
-      .jposred    { color: rgb(237,  27,  36); }
-      .jpospurple { color: rgb(108,  73, 201); }
+      .grayed50     { color: rgb(50%, 50%, 50%); }
+      .jposred      { color: rgb(237,  27,  36); }
+      .jpospurple   { color: rgb(108,  73, 201); }
       .greenConsole { color: rgb(0,  250, 0); }
 
       /* paragrah classes */
@@ -69,6 +70,8 @@
       .smallpara { font-size: 14pt; }
       .para50 { padding-left: 25%;  padding-right: 25%;}
 
+      .grayframe {  background-color: #bbbbbb;
+                    padding-left: 0.3em; padding-right: 0.3em;  padding-bottom: 0.1em;}
       blockquote { font-style: italic; }
 
       /* image classes */
@@ -139,7 +142,7 @@ class: center, middle
 * jPOS and ISO-8583, jPOS-CMF
 * Review of jPOS library and "ecosystem"
 * jPOS-EE modules
-* Quick look to some jPOS classes and interfaces
+<!-- * Quick look to some jPOS classes and interfaces -->
 * The jPOS-template
   * Setup of dev tools (git, gradle, java, IDE)
   * Quick hands-on: cloning, running and killing the jPOS-template
@@ -304,11 +307,11 @@ It has grown into a large family of products that use jPOS at their core, along 
 proprietary code, to integrate solutions at all levels in the payments and card industry.
 
 .mediumpara[
-* jPTS: switching system.
-* jCard: authorizing/CMS.
-* ISO/Bridge: lightweight point A to point B bridge.<br>
+* **jPTS**: switching system.
+* **jCard**: authorizing/CMS.
+* **ISO/Bridge**: lightweight point A to point B bridge.<br>
   Endpoints can be ISO-8583 or XML, HTTP+JSON, etc.
-* Gateway: half way between ISO/Bridge and a full-fledged jPTS.<br>
+* **Gateway**: half way between ISO/Bridge and a full-fledged jPTS.<br>
   It may add extra features such as HSM interaction, high availability deployments, or querying external APIs.
 ]
 
@@ -339,91 +342,22 @@ The project ususally keeps a link to the "upstream" reference implementation tha
 
 _"Nothing is written in stone."_
 
----
-
-# Some jPOS components
-
-* `ISOMsg`
-  * a java class representing an ISO-8583 message
-  * methods to get/set fields, or "data elements"
-
-* Servers
-  * `QServer`
-  * they **listen** on a TCP port
-  * have an associated channel (_`ISOChannel`_)
-
-* Clients
-  * `ChannelAdaptor`, `OneShotChannelAdaptor`
-  * they **initiate** a TCP connection to a remote  .jpospurple[host:port]
-  * also have an associated channel
 
 ---
 
-# Some jPOS components
+# Q & A
 
-* Channels (_`ISOChannel`_)
-  * `ASCIIChannel`, `AmexChannel`, `BASE24Channel`, `VAPChannel`, ...
-  * a channel "wraps" the message (usually there's at least a header indicating message length)
+.onebigimg[ ![Q&A](images/bigbluequestion.jpg) ]
 
+???
 
-
-* Packagers (_`ISOPackager`_)
-  * `XMLPackager`, `BASE24Packager`,  `ISO93BPackager`, `PostPackager`, **`GenericPackager`**, ...
-  * they know how to encode/decode (`pack()` / `unpack()`) each field in a message, including bitmaps and headers
+(break, 10 minutes)
 
 ---
 
-# Some jPOS components
-
-* Request Listeners (_`ISORequestListener`_)
-  * `IncomingListener`, `BSHRequestListener`, `GroovyRequestListener`
-  * [`process()`](http://jpos.org/doc/javadoc/org/jpos/iso/ISORequestListener.html#process-org.jpos.iso.ISOSource-org.jpos.iso.ISOMsg-)
-    each incoming message (usually attached to a `QServer`, but it could be to a `MUX` too)
-  * must be quick, so as not to block incoming messages
-  * commonly used to prepare a `Context` and dispatch it to the `TransactionManager` (more on that tomorrow)
-
-* Multiplexers (_`MUX`_)
-  * `QMUX`, `MUXPool`
-  * they match incoming responses to outstanding requests
-  * normally used in association to a **persistent** client connection
-
----
-
-# Some jPOS components
-
-* Filters (_`ISOFilter`_)
-  * `DebugFilter`, `MD5Filter`, `BSHFilter` ...
-  * do extra incoming/outgoing transformation of `ISOMsg` at the edges
-
-* Spaces (_`Space`_)
-  * `TSpace`, `JESpace`, `JDBMSpace`, ...
-  * messaging queues storing generic objects
-  * native jPOS inter-component communication
-
-
-
----
-
-# Server or client?
-
-From a **networking** standpoint:
-
-* Server **waits** for connections (e.g. on a TCP port)
-
-* Client **initiates** connection to the server
-
-<br><br>
-
-From a **messaging** standpoint:
-
-* Client **sends requests**  (e.g. ISO8583 request)
-* Server **returns responses**
-
-
----
-
-
+<!-- =================================================================== -->
 <!-- ========================== jPOS-template ========================== -->
+<!-- =================================================================== -->
 
 # The jPOS-template
 
@@ -508,7 +442,6 @@ $ gradle installApp
 .smallpara[(The first time, it will download a bunch of library dependencies)]
 
 ...wait...
-
 --
 <!-- incremental -->
 
@@ -533,7 +466,10 @@ $ ./build/install/jPOS-template/bin/q2
 And let's kill it with **`Ctrl-C`**
 
 
+<!-- =================================================================== -->
 <!-- =====================END OF jPOS-template ========================== -->
+<!-- =================================================================== -->
+
 ---
 
 # Q & A
@@ -543,6 +479,100 @@ And let's kill it with **`Ctrl-C`**
 ???
 
 (break, 10 minutes)
+
+
+---
+
+#  Module 2
+
+* Introduction of core jPOS components
+  * The ISOMsg class
+  * Client/Server channels
+  * Request listeners
+  * Multiplexers, MUXPool
+  * Spaces
+* Q2 and the QBean lifecycle
+
+---
+
+# Some jPOS components
+
+* `ISOMsg`
+  * a java class representing an ISO-8583 message
+  * methods to get/set fields, or "data elements"
+
+* Servers
+  * `QServer`
+  * they **listen** on a TCP port
+  * have an associated channel (_`ISOChannel`_)
+
+* Clients
+  * `ChannelAdaptor`, `OneShotChannelAdaptor`
+  * they **initiate** a TCP connection to a remote  .jpospurple[host:port]
+  * also have an associated channel
+
+---
+
+# Some jPOS components
+
+* Channels (_`ISOChannel`_)
+  * `ASCIIChannel`, `AmexChannel`, `BASE24Channel`, `VAPChannel`, ...
+  * a channel "wraps" the message (usually there's at least a header indicating message length)
+
+
+
+* Packagers (_`ISOPackager`_)
+  * `XMLPackager`, `BASE24Packager`,  `ISO93BPackager`, `PostPackager`, **`GenericPackager`**, ...
+  * they know how to encode/decode (`pack()` / `unpack()`) each field in a message, including bitmaps and headers
+
+---
+
+# Some jPOS components
+
+* Request Listeners (_`ISORequestListener`_)
+  * `IncomingListener`, `BSHRequestListener`, `GroovyRequestListener`
+  * [`process()`](http://jpos.org/doc/javadoc/org/jpos/iso/ISORequestListener.html#process-org.jpos.iso.ISOSource-org.jpos.iso.ISOMsg-)
+    each incoming message (usually attached to a `QServer`, but it could be to a `MUX` too)
+  * must be quick, so as not to block incoming messages
+  * commonly used to prepare a `Context` and dispatch it to the `TransactionManager` (more on that tomorrow)
+
+* Multiplexers (_`MUX`_)
+  * `QMUX`, `MUXPool`
+  * they match incoming responses to outstanding requests
+  * normally used in association to a **persistent** client connection
+
+---
+
+# Some jPOS components
+
+* Filters (_`ISOFilter`_)
+  * `DebugFilter`, `MD5Filter`, `BSHFilter` ...
+  * do extra incoming/outgoing transformation of `ISOMsg` at the edges
+
+* Spaces (_`Space`_)
+  * `TSpace`, `JESpace`, `JDBMSpace`, ...
+  * messaging queues storing generic objects
+  * native jPOS inter-component communication
+
+
+
+---
+
+# Server or client?
+
+From a **networking** standpoint:
+
+* Server **waits** for connections (e.g. on a TCP port)
+
+* Client **initiates** connection to the server
+
+<br><br>
+
+From a **messaging** standpoint:
+
+* Client **sends requests**  (e.g. ISO8583 request)
+* Server **returns responses**
+
 
 ---
 
@@ -592,7 +622,20 @@ trailer:
 ---
 # ISOMsg & Packagers
 
-.onebigimg[![](images/jpos_approach_packagers.png)]
+.onebigimg75[![](images/jpos_approach_packagers.png)]
+
+.smaller-code75p[.grayframe[
+```
+
+  Message: 08 00 20 20 00 00 00 08 00 00 00 00 00 70 44 51 32 39 31 31 30 30 30 31 (hexdump)                                                                
+      MTI: 08 00
+   Bitmap: 20 20 00 00 00 08 00 00
+ Field 03: 00 00 00
+ Field 11: 70 44 51
+ Field 41: 32 39 31 31 30 30 30 31 (ASCII for "29110001")
+
+```
+]]
 
 ---
 
@@ -723,6 +766,16 @@ Fijarse el slide de apr
 
 ---
 
+# Q & A
+
+.onebigimg[ ![Q&A](images/bigbluequestion.jpg) ]
+
+???
+
+(break, 10 minutes)
+
+---
+
 # Q2 and QBeans
 
 jPOS systems can be run as standalone applications (the recommended way that
@@ -786,17 +839,17 @@ We'll get deeper into it later, when we do some hands-on demos.
 * similarly, if it implements [`XmlConfigurable`](http://jpos.org/doc/javadoc/org/jpos/core/XmlConfigurable.html), then
 `setConfiguration(Element e)` will be called, and the object can interpret any custom inner XML
 ]
-<!-- .center.onebigimg[ ![](images/qbean_descriptor.png) ] -->
+
+---
+
+# Q & A
+
+.onebigimg[ ![Q&A](images/bigbluequestion.jpg) ]
 
 
 ---
 
-class: middle
-
-# END OF FIRST DAY
-
-
----
+exclude: true
 
 class: center, middle
 
@@ -805,12 +858,15 @@ class: center, middle
 
 ---
 
-# Agenda
+# Module 3
 
-* Quick overview of first day
-* Hands-on: Hello jPOS!
-* Packagers and `GenericPackager`
-* Q & A
+* Hands-on: "Hello jPOS!" based on jPOS-template
+  * Adding gradle dependencies
+  * Analysis of QBean deployment descriptors
+  * More in depth analysis of QServer, ChannelAdaptor, MUX, Space
+  * Packagers, ISOFieldPackagers and GenericPackager
+  * Examples of GenericPackager configuration
+  * Understand jPOS log format
 
 ---
 
@@ -825,7 +881,7 @@ Then we'll extend our system by adding a client channel that will send
 a modified copy of the message to some remote node.
 
 ### Core concepts
-* creating a new project from the jPOS-template
+* ~~creating a new project from the jPOS-template~~
 * adding `gradle` dependencies
 * `QBean` deployment descriptors used by `Q2`
 * servers, channel adaptors (clients), channels, packagers, request listeners,
@@ -886,7 +942,7 @@ dependencies {
 We can use the short syntax:
 
 ```gradle
-implementation 'org.jpos.ee:jposee-server-simulator:2.2.7-SNAPSHOT'
+implementation 'org.jpos.ee:jposee-server-simulator:2.2.9-SNAPSHOT'
 ```
 <br>
 <br>
