@@ -476,14 +476,18 @@ And let's kill it with **`Ctrl-C`**
 
 .onebigimg[ ![Q&A](images/bigbluequestion.jpg) ]
 
-???
+---
 
-(break, 10 minutes)
+class: center, middle
 
+[jposlogo]:   images/logo_jpos_170x116.png         "jPOS Logo"
+[transalogo]: images/logo_transactility_220x72.png "Transactility Logo"
+
+# Module Two
 
 ---
 
-#  Module 2
+#  Module Two
 
 * Introduction of core jPOS components
   * The ISOMsg class
@@ -855,10 +859,18 @@ class: center, middle
 
 # SECOND DAY
 
+---
+
+class: center, middle
+
+[jposlogo]:   images/logo_jpos_170x116.png         "jPOS Logo"
+[transalogo]: images/logo_transactility_220x72.png "Transactility Logo"
+
+# Module Three
 
 ---
 
-# Module 3
+# Module Three
 
 * Hands-on: "Hello jPOS!" based on jPOS-template
   * Adding gradle dependencies
@@ -1040,27 +1052,23 @@ Let's play with the packagers in *Hello jPOS!*
 
 class: center, middle
 
-# END OF SECOND DAY
+[jposlogo]:   images/logo_jpos_170x116.png         "jPOS Logo"
+[transalogo]: images/logo_transactility_220x72.png "Transactility Logo"
 
+# Module Four
 
----
-
-class: center, middle
-
-# THIRD DAY
 
 
 ---
 
-# Agenda
+# Module Four
 
+## Introduction to TransactionManager
 
-* Quick overview of second day
-* Transaction Manager
-* Hands-on: simple gateway
-* Analysis of `QueryHost` and `SendResponse`
-* Create a Java participant if time permits
-* Q & A and discussion as time permits
+* General structure of TransactionManager configuration
+* Transaction Participants, the transaction Context
+* Analysis of TransactionManager's 2-phase commit protocol and its different cases
+* TransactionManager properties (queue, sessions, etc)
 
 ---
 
@@ -1296,11 +1304,37 @@ Some configuration options:
 
 ---
 
+exclude: true
+# Agenda
+
+
+* Quick overview of second day
+* Transaction Manager
+* Hands-on: simple gateway
+* Analysis of `QueryHost` and `SendResponse`
+* Create a Java participant if time permits
+* Q & A and discussion as time permits
+
+
+---
+
+class: center, middle
+
+[jposlogo]:   images/logo_jpos_170x116.png         "jPOS Logo"
+[transalogo]: images/logo_transactility_220x72.png "Transactility Logo"
+
+# Module Five
+
+---
+
+
 <!-- ============== SIMPLE GATEWAY =============== -->
 
-# Hands-on: simple gateway
+# Module Five
 
-We'll implement a simple jPOS-based gateway.
+## Hands-on: simple gateway
+
+We'll implement a simple jPOS-based **gateway**.
 
 Requests will come in, they will be processed by a request listener and handed
 over to a transaction manager for executing the business logic.
@@ -1322,6 +1356,44 @@ will be used to return a response to the original requester
 
 .onebigimg[ ![gateway](images/gateway-demo-mux.png) ]
 
+
+---
+
+class: center, middle
+
+[jposlogo]:   images/logo_jpos_170x116.png         "jPOS Logo"
+[transalogo]: images/logo_transactility_220x72.png "Transactility Logo"
+
+# Module Six
+
+---
+
+# Module Six
+
+* Project configuration options
+  * build-time configuration
+  * run-time configuration with jPOS Environment
+
+* Implementing custom Transaction Participants
+
+
+---
+
+class: center, middle
+
+[jposlogo]:   images/logo_jpos_170x116.png         "jPOS Logo"
+[transalogo]: images/logo_transactility_220x72.png "Transactility Logo"
+
+# Module Seven (extra)
+
+---
+
+# Module Seven
+
+* Offering a REST API endpoint
+* Calling an external REST API service
+* jCard Q&A
+* jPTS Q&A
 
 ---
 
