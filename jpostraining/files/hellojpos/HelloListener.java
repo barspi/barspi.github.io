@@ -22,8 +22,7 @@ public class HelloListener implements ISORequestListener, Configurable {
       //    * source: is where the message came from (a channel, or mux, etc)
       try {
         message.setResponseMTI();  // 0810
-        
-        
+
         Random random = new Random (System.currentTimeMillis());
         int rnd37= random.nextInt(1000000);           // RRN (Ref. Retrieval Number)
         int rnd38= random.nextInt(1000000);           // Approval Code
@@ -47,12 +46,13 @@ public class HelloListener implements ISORequestListener, Configurable {
       
       //--------------------------------------------------------------------------------
       
+
         Space sp= SpaceFactory.getSpace();            // Get a reference to the common Space (a TSpace)
         
         ISOMsg m2= (ISOMsg)message.clone();           // Create a clone of the message
         m2.setMTI("0800");
         
-        m2.set(44, "Hello jPOS");                     // add some new field
+        m2.set(44, greeting);                         // add some new field
         
         byte [] pinblock= new byte[] {0x10, (byte)0xFF, (byte)0xAA, 0x00, 0x22, 0x33, (byte)0x99, (byte)0xE2 };
         m2.set(52, pinblock);
@@ -75,7 +75,7 @@ public class HelloListener implements ISORequestListener, Configurable {
 
     @SuppressWarnings("unchecked")
     public void setConfiguration (Configuration cfg) throws ConfigurationException {
-        greeting = cfg.get("greeting", "????");
+        greeting = cfg.get("greeting", "Hello jPOS");
     }
 
 }

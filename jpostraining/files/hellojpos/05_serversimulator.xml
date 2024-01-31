@@ -4,10 +4,10 @@
 
     <attr name="port" type="java.lang.Integer">10000</attr>
 
-    <channel  name=     "SERVERCHANNEL_10000"
+    <channel  name=     "server-channel"
               class=    "org.jpos.iso.channel.XMLChannel"
               logger=   "Q2"
-              realm=    "TheServerChannel_10000"
+              realm=    "server-channel-10000"
 
               packager= "org.jpos.iso.packager.XMLPackager">
 
@@ -24,7 +24,7 @@
     </channel>
 
     <request-listener class="demo.HelloListener" logger="Q2">
-        <property name="source" value="cfg/serversimulator.bsh" />
+        <!-- <property name="greeting" value="Howdy partner!" /> -->
     </request-listener>
 
   
