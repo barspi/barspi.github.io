@@ -12,7 +12,9 @@ import java.util.Random;
 
 @SuppressWarnings("unused")
 public class HelloListener implements ISORequestListener, Configurable {
+
     private String greeting;
+
     //------------------------------------
 
     @Override
