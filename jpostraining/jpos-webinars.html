@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html>
+    <!--    Este documento html es para ser usado con Remarkjs
+            https://remarkjs.com
+            https://github.com/gnab/remark
+    -->
+  <head>
+    <title>Title</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+      @import url('https://fonts.googleapis.com/css?family=Ubuntu');
+
+      /* don't change color of visited */
+      a, a:visited, a:hover, a:active {
+        color: blue;
+      }
+
+      body { /* font-family: 'Droid Serif'; */
+        font-family: 'Ubuntu';
+      }
+
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+
+      h1 { text-align: center; }     /* los titulos van centrados */
+
+      .remark-slide-content { font-size: 18pt; }
+      .remark-slide-number  { font-size: 50%; }
+
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      .remark-code { font-size: 85%; }
+      .remark-inline-code { color: indianred; }
+      .remark-code-line-highlighted { background-color: #0000ff; }
+
+      .smaller-code90p { font-size: 90%; }
+      .smaller-code85p { font-size: 85%; }
+      .smaller-code75p { font-size: 75%; }
+      .stronger { font-size: 110%; font-weight: bolder; }
+
+
+      .consoleTextInline {  font-family: 'Ubuntu Mono'; font-size: 90%;
+                            background-color: black;
+                            padding: 0.1em 0.2em;
+      }
+
+      /* text colors */
+      .grayed50     { color: rgb(50%, 50%, 50%); }
+      .jposred      { color: rgb(237,  27,  36); }
+      .jpospurple   { color: rgb(108,  73, 201); }
+      .greenConsole { color: rgb(0,  250, 0); }
+
+      /* paragrah classes */
+      .topleftminititle {
+              font-family: 'Yanone Kaffeesatz';
+              font-weight: normal;
+              font-size: 16pt;
+              position: absolute;
+      }
+
+      li { margin-bottom: 0.3em; }
+      li > p {  margin-bottom: 0.3em; }
+
+      .bigpara { font-size: 28pt; }
+      .mediumpara { font-size: 16pt; }
+      .smallpara { font-size: 14pt; }
+      .para50 { padding-left: 25%;  padding-right: 25%;}
+
+      .grayframe {  background-color: #bbbbbb;
+                    padding-left: 0.3em; padding-right: 0.3em;  padding-bottom: 0.1em;}
+      blockquote { font-style: italic; }
+
+      /* image classes */
+      .onebigimg   img { width:  95%; }
+      .onebigimg80 img { width:  80%; }
+      .onebigimg75 img { width:  75%; }
+
+      /* logos at the botom */
+      .bottomlogo { position: absolute;
+                    bottom: 20px;
+                    opacity: 0.5;
+      }
+
+      /** padding-overrides */
+      .smallpaddingLR { padding: 1em 2em 1em 2em; }
+
+
+      /* right: igual al padding que tiene remark-slide-content
+         padding-bottom: para alinearlo con el logo de jpos y que quede lindo
+       */
+      .bottomlogo.right     { right: 2em; padding-bottom: 10px; }
+      .bottomlogo.right img { width: 100px; }
+      .bottomlogo.left      { left:  2em;}
+      .bottomlogo.left  img { width: 100px; left:  2em;}
+      .img50pct         img { width: 50%; }
+
+    </style>
+  </head>
+
+  <body>
+    <textarea id="source">
+layout: true
+
+[jposlogo]:   images/logo_jpos_170x116.png         "jPOS Logo"
+[transalogo]: images/logo_transactility_220x72.png "Transactility Logo"
+
+
+.bottomlogo.left[ ![jpos.org][jposlogo] ]
+.bottomlogo.right[ ![transactility.com][transalogo] ]
+
+---
+
+class: center
+
+# Welcome
+<br><br><br>
+
+## Barzilai Spinak &lt; barspi@transactility.com >
+
+Core jPOS Developer<br>
+jPOS Evangelist<br>
+a.k.a. _The Facilitator_<br>
+
+---
+
+# jPOS.org and Transactility, Inc.
+
+<br><br>
+
+|                                               |                                                               |
+| --------------------------------------------- | -------------------------------------------------------------:|
+|![jpos.org][jposlogo]                          | <!-- empty -->                                                |
+| .grayed50[Home site of the jPOS.org project]  | ![transactility.com][transalogo]                              |
+| <!-- empty -->                                | .grayed50[_"Commercial Licensing and Support for jPOS.org"_]  |
+
+---
+
+# The jPOS project
+
+.center.img50pct[![8583 flavors](images/apr.jpg)]
+
+Alejandro Revilla
+- The Creator
+- a.k.a. `@apr`
+
+---
+
+# jPOS
+
+* Originally born, over 25 years ago as a way of handling ISO-8583 messaging and connectivity.
+
+* Early on released under an open-source development model that allowed it to grow a large
+  community of users and developers around it.
+
+* In _very active development for more than 25 years_ (jPOS 3.0 to be released soon).
+
+<!-- * In its long history, it has accompanied technology changes, sometimes implementing custom solutions for
+architecture and design patterns that had not yet become popular.
+ -->
+* This organic process has allowed jPOS and its ecosystem to amass a large collection of classes,
+APIs, and reusable components that can be used to implement a broad range of solutions.
+
+<!-- It has grown into a large family of products that use jPOS at their core, along other technologies and
+proprietary code, to integrate solutions at all levels in the payments and card industry.
+ -->
+
+---
+
+# The jPOS project
+
+* Used in more than .jposred[110 countries] on five continents
+
+* From .jpospurple[Fortune 100] and .jpospurple[Fortune 500] to small retailers and startups
+
+.center.onebigimg75[![logos](images/jpos_users_logos.png)]
+
+---
+
+# The jPOS project
+
+Developed as an open source project, with dual license.<br>
+(GNU AFFERO GENERAL PUBLIC LICENSE)
+
+* The code is free to study, test, change, contribute...
+
+* It is **NOT FREE** to use it commercially without releasing your own code
+
+* Inexpensive commercial licenseses are available under various licensing models (please ask for a quote)
+
+.center[`http://www.transactility.com/licensing`]
+
+---
+
+# Open source repositories
+
+
+* jPOS<br>
+  https://github.com/jpos/jPOS<br>
+  https://github.com/jpos/jPOS/tree/next .smallpara[(upcoming jPOS 3.0)]
+
+* jPOS online javadoc<br>
+  http://jpos.org/doc/javadoc/index.html
+
+* jPOS-EE<br>
+   https://github.com/jpos/jPOS-EE  
+* jPOS template<br>
+  https://github.com/jpos/jPOS-template
+
+
+---
+
+# jPOS-EE modules
+
+* jPOS-EE is an open source repository for jPOS modules
+* Think of it as "plugins", or "add-ons" that don't need to be in the main jPOS repository
+* They are useful to add functionality in a standard way
+* In the upcoming "hands-on" session, we will use the "server simulator" module form jPOS-EE
+
+.center[ https://github.com/jpos/jPOS-EE ]
+
+
+---
+
+# jPOS Technology Stack
+
+
+.center.onebigimg[![logos](images/jpos_arch_stack.png)]
+
+---
+
+# jPOS Ecosystem
+
+The success of jPOS has given birth to a large family of products that use jPOS at their core.
+<br><br>
+With jPOS and other technologies, libraries, and proprietary code, we can integrate solutions at all levels in the payments and card industry.
+
+<!-- .center.onebigimg75[![logos](images/jpos_arch_stack.png)] -->
+
+---
+
+# jPOS Ecosystem
+
+Our main products:
+
+* **jPTS**: switching system.
+* **jCard**: authorizing/CMS.
+* **ISO/Bridge**: lightweight point A to point B bridge.<br>
+  Endpoints can be ISO-8583 or XML, HTTP+JSON, etc.
+* **Gateway**: half way between ISO/Bridge and a full-fledged jPTS.
+  It may add extra features such as HSM interaction, high availability deployments, or querying external APIs.
+
+---
+
+# jPOS Ecosystem
+
+Exmples of some other proprietary libraries
+
+* Source and Destination stations: Mastercard, Visa, Postbridge, Prosa, etc
+* Clearing & settlement for issuers: Mastercard IPM, Visa BASE II, Prosa
+* Settlement files for acquirers: Masercard, Visa
+* Mastercard Interchange Rate (IRD) Calculator
+* Embosing modules
+* HSM modules: Thales, Futurex Excrypt, Atalla, MYSHM, Utimaco, AWS Payment Cryptography
+
+
+
+---
+
+# Reference Implementation
+
+Our flagship commercial products and libraries are provided as what we call a **Reference Implementation**.
+
+The _licensee_ gets all the source code and rights to modify it and extend it as needed.
+
+New projects start from the current reference implementation(s), and evolve from there, 
+adding public and private modules, and all the necessary custom code logic.
+
+The project ususally keeps a link to the "upstream" reference implementation that can be used to bring in changes, bug fixes, etc.
+
+_"Nothing is written in stone."_
+
+
+---
+
+# ISO-8583 "generations"
+<p>&nbsp;</p>
+.para50[.bigpara[
+* Version 1987
+* Version 1993
+* Version 2003
+* Version 2023
+]]
+
+---
+
+# ISO-8583 flavors
+<p>&nbsp;</p>
+.onebigimg[![8583 flavors](images/iso8583flavors.png)]
+
+
+---
+
+# jPOS-CMF
+
+.center[jPOS Common Message Format]
+
+It's an ISO-8583 specification based on **`v2003`**.
+
+Used internally and for intercommunication in our products such as jPTS and jCard.
+
+* https://github.com/jpos/jPOS-CMF
+* http://jpos.org/doc/jPOS-CMF.pdf
+
+---
+
+# Channels & Packagers
+
+Traditional ISO-8583 protocols:
+* Persistent connections
+* Client or server mode
+* Nowadays TCP/IP
+* Message signaling at the transport layer
+* Other optional metadata in a message header, depending on vendor specification
+
+---
+
+# Channels & Packagers
+
+.onebigimg[![](images/isomsg_with_channel_packager.png)]
+
+.smallpara[
+header:
+* typically encodes **length** of message
+* may have other static/dynamic metadata
+
+trailer:
+* some protocolos may need a trailer<br>
+  most don't
+]
+
+---
+
+# Channels & Packagers
+
+.mediumpara[
+### `GenericPackager`
+* The one we use 99% of the time nowadays
+* Uses external configuration file
+]
+.smaller-code75p[
+```xml
+<isopackager>
+  <isofield
+      id="0"  length="4" name="Message Type Indicator"
+      class="org.jpos.iso.IFA_NUMERIC"/>
+  <isofield
+      id="1"  length="16" name="Bitmap"
+      class="org.jpos.iso.IFA_BITMAP"/>
+  <isofield
+      id="2"  length="19" name="Primary Account number"
+      class="org.jpos.iso.IFA_LLNUM"/>
+  [...]
+
+  <isofield
+      id="52" length="8" name="Personal identification number [PIN] data"
+      class="org.jpos.iso.IFB_BINARY"/>
+  
+  [...]
+```]
+
+---
+
+# Channels & Packagers
+
+### `GenericPackager`
+
+We have dozens of `GenericPackager` for many ISO-8583 flavors
+
+* Mastercard
+    * ASCII, EBCDIC, packed/upacked numbers and lengths
+    * Single/dual message online, NEX
+    * IPM files
+* Visa
+    * Online authorizations
+    * Visa DPS
+    * BASE I / BASE II
+* Postilion Postbridge, 
+   Prosa, Discover, Diners, Fiserv, China Union Pay
+* long etc.
+
+---
+
+# Channels & Packagers
+
+.mediumpara[
+####  `XMLPackager`
+
+* jPOS custom XML serialization
+* Over raw TCP or HTTP
+]
+.smaller-code75p[
+```xml
+<isomsg>
+  <field id="0" value="0100"/>
+  <field id="2" value="5148480100000021"/>
+  <field id="3" value="000000"/>
+  <field id="4" value="000000000100"/>
+  <field id="5" value="000000000100"/>
+  <field id="6" value="000000006927"/>
+  [...]
+  <field id="42" value="248748000103177"/>
+  <field id="43" value="GOOGLE *TEMPORARY HOLD g.co/helppay# CA "/>
+  <field id="48" value="E3F6F1F0F5F0F0F0F0F1F9F2F0F3F3F7F2F4F2F0F7F0F1F0F3F2F1F0F5F6F1F8C1D8E5F0F0F0C1D8E2F6F0F0C1D8C6F0F0F0F7F5F1F3F0F1F0F3F2F2F5F0F2F0F2F0F1F7F1F0F4F1F8C340" type="binary"/>
+  <field id="49" value="840"/>
+  <field id="50" value="840"/>
+  <field id="51" value="600"/>
+  <field id="61" value="102510000660084094043     "/>
+</isomsg>
+```]
+
+---
+
+# Channels & Packagers
+
+.mediumpara[
+#### `JSONPackager`
+
+* jPOS custom JSON serialization
+* Over raw TCP or HTTP
+]
+.smaller-code75p[
+```json
+{
+  "0": "2100",
+  "2":  "67456989000002010",
+  "3": "002100",
+
+  "14": "2512",
+  "4a": "9782000000000333",
+  "7": "1224223500",
+  "12": "20240617223500",
+  "11": "170965186000",
+  "37": "170965186006",
+  "35": "67456989000002010=251222000008765",
+  "26": "5311",
+  "22h": "10000000000000000000000000000000",
+  "41": "29110001",
+  "42": "001104869",
+  "52h": "B215198FB55B1CE9",
+  "53": "000022"
+}
+```
+]
+
+---
+
+class: center, middle
+
+# DEMO TIME!
+
+---
+class: center, middle
+
+# Q & A
+
+.onebigimg[ ![Q&A](images/bigbluequestion.jpg) ]
+
+<!-- Final Q&A slide with the footer images so they appear in the rest of the slides -->
+[jposlogo]:   images/logo_jpos_170x116.png         "jPOS Logo"
+[transalogo]: images/logo_transactility_220x72.png "Transactility Logo"
+
+
+---
+exclude: true
+
+Sugerencias de uno de los asistentes, creo que son válidas:
+
+Brand, hacer el webinar un poco más “corporate”, por lo menos que el moderador use un backpanel de TR
+La intro, debería ser “que es y para que sirve” antes de hablar de historia, licensing y dive-in al repository
+Add intro explaining “what we are going to see today is…. “
+Needs “jPOS provides THIS, that saves YOU from doing BLA and BLA and BLA and BLA, so you can focus on BLA and BLA and BLA”
+Explain more clearly difference between jPOS, jPTS, jCard, jPOSEE
+Walkthrough of the UI? Transmit message that your first project can be “easy”
+Explain which trainings are available and what is covered in each
+
+    </textarea>
+
+    <script src="js/remark-latest.min_0.15.0.js"></script>
+    <script>
+      var slideshow = remark.create({
+          highlightLines: true,
+          highlightStyle: "sunburst"
+      });
+    </script>
+  </body>
+</html>
+
