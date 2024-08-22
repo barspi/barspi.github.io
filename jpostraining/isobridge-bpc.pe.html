@@ -64,6 +64,7 @@
 
       li { margin-bottom: 0.3em; }
       li > p {  margin-bottom: 0.3em; }
+      .line1_5 li {  margin-bottom: 1em; } /** li's más separaditos  .line1_5[...y aca una lista...] **/
 
       .bigpara { font-size: 28pt; }
       .mediumpara { font-size: 16pt; }
@@ -78,6 +79,9 @@
       .onebigimg   img { width:  95%; }
       .onebigimg80 img { width:  80%; }
       .onebigimg75 img { width:  75%; }
+      .parawithsmallimg35 img { width: 35%; float: left; margin-right: 2em; }
+
+      .imgpara {  align-items: top; }
 
       /* logos at the botom */
       .bottomlogo { position: absolute;
@@ -182,6 +186,10 @@ proprietary code, to integrate solutions at all levels in the payments and card 
 
 ---
 
+exclude: true
+
+EXCLUDED EXCLUDED EXCLUDED EXCLUDED EXCLUDED EXCLUDED EXCLUDED 
+
 # The jPOS project
 
 Developed as an open source project, with dual license.<br>
@@ -196,6 +204,10 @@ Developed as an open source project, with dual license.<br>
 .center[`http://www.transactility.com/licensing`]
 
 ---
+
+exclude: true
+
+EXCLUDED EXCLUDED EXCLUDED EXCLUDED EXCLUDED EXCLUDED EXCLUDED 
 
 # Open source repositories
 
@@ -214,6 +226,10 @@ Developed as an open source project, with dual license.<br>
 
 
 ---
+
+exclude: true
+
+EXCLUDED EXCLUDED EXCLUDED EXCLUDED EXCLUDED EXCLUDED EXCLUDED 
 
 # jPOS-EE modules
 
@@ -248,10 +264,10 @@ With jPOS and other technologies, libraries, and proprietary code, we can integr
 
 Our main products:
 
-* **jPTS**: switching system.
-* **jCard**: authorizing/CMS.
+* **jPTS**: switching system.<br><br>
+* **jCard**: authorizing/CMS.<br><br>
 * **ISO/Bridge**: lightweight point A to point B bridge.<br>
-  Endpoints can be ISO-8583 or XML, HTTP+JSON, etc.
+  Endpoints can be ISO-8583 or XML, HTTP+JSON, etc.<br><br>
 * **Gateway**: half way between ISO/Bridge and a full-fledged jPTS.
   It may add extra features such as HSM interaction, high availability deployments, or querying external APIs.
 
@@ -273,7 +289,6 @@ Exmples of some other proprietary libraries
 ---
 
 exclude: true
-
 EXCLUDED EXCLUDED EXCLUDED EXCLUDED EXCLUDED EXCLUDED EXCLUDED 
 
 # Reference Implementation
@@ -352,6 +367,8 @@ trailer:
 ]
 
 ---
+exclude: true
+EXCLUDED EXCLUDED EXCLUDED EXCLUDED EXCLUDED EXCLUDED EXCLUDED 
 
 # Channels & Packagers
 
@@ -467,13 +484,39 @@ We have dozens of `GenericPackager` for many ISO-8583 flavors
 
 ---
 
+# ISO/Bridge
+
+.line1_5[
+* Bridges the outside network protocols and the client's preferred protocol/format
+* Leverages the jPOS framework and ecosystem
+* Closed product (source code available for an extra one-time license)
+* Delivered as a zip/tar file, or Docker image
+* Basic ISO/Bridge is simple, almost "stateless", no DB, HSM, **very performant**
+* **Custom-made** for every case (for example, talk to external APIs)
+]
+
+---
+
+
+# ISO/Bridge
+
+.line1_5[
+* Configurable with environment variables (IPs, ports, URLs, etc., according to needs)
+* Connections can be persistent, one-time, client mode, server mode, etc. depending to protocols and specifications
+* Can be configured with clean or SSL/TLS connections
+* ISO/Bridge maintains connectivity to network (sign-on/off, echoes, connection recovery, etc.)
+* Monitoring services (for example through HTTP) can be added as requested
+]
+
+---
+
 # ISO/Bridge (issuer)
 
 .center.onebigimg75[![isobridge_issuer](images/isobridge_issuer.png)]
 
-* bla
-* blo
-* bli
+* **Typical case**: issuer receives ISO-8583 from card network, but wants to process it into a more friendly format.
+* One source, one destination
+
 
 ---
 
@@ -481,22 +524,33 @@ We have dozens of `GenericPackager` for many ISO-8583 flavors
 
 .center.onebigimg75[![isobridge_acquirer](images/isobridge_acquirer.png)]
 
-* bla
-* blo
-* bli
+* **Typical case**: acquirer wants to send ISO-8583 towards card network, but wants to generate the messages into a more friendly format.
+* One source, one destination
 
 ---
 
-# ISO/Bridge (multiple dest)
+# ISO/Bridge (multi dest)
+
+.center[Propuesta para BCP Perú]
 
 .center.onebigimg75[![isobridge_issuer_multidest](images/isobridge_issuer_multidest.png)]
 
-* bla
-* blo
-* bli
 
 ---
 
+# ISO/Bridge (multi dest)
+Propuesta para BCP Perú
+
+.parawithsmallimg35[![isobridge_issuer_multidest](images/isobridge_issuer_multidest.png)]
+
+* Un origen (Visa), múltiples destinos
+* Los destinos usarán (o no) la misma codificación 8583 de Visa
+* Destinos configurables
+* Lógica para elegir el destino, basada en presencia de CVV/CVV2/iCVV, etc.
+* Posibilidad de ir ajustando y ampliando la lógica según surjan necesidades.
+* Balanceo de carga (un destino lógico podría tener múltiples hosts de destino,
+  usando estragegia de balanceo tipo _round robin_ u otras)
+---
 
 
 class: center, middle
