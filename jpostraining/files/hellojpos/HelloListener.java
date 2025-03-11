@@ -35,12 +35,12 @@ public class HelloListener implements ISORequestListener, Configurable {
         String field4= message.getString(4);
         
         if ( "000000009999".equals(field4) )
-            message.set (39, "01");
+            message.set (39, "01");   //  result code/response code/action code
         else
             message.set (39, "00");
         
-        message.unset(41);
-        
+        message.unset(41);   // message.set(41, null)
+
         source.send (message);                        // Send the [transformed] original message
                                                       // back to where it came from (which is the
                                                       // QServer's XMLChannel)
