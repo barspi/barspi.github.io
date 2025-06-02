@@ -66,6 +66,7 @@
       li > p {  margin-bottom: 0.3em; }
       .line1_5 li {  margin-bottom: 1em; } /** li's más separaditos  .line1_5[...y aca una lista...] **/
 
+      .biggerpara { font-size: 32pt; }
       .bigpara { font-size: 28pt; }
       .mediumpara { font-size: 16pt; }
       .smallpara { font-size: 14pt; }
@@ -80,6 +81,7 @@
       .onebigimg   img { width:  95%; }
       .onebigimg80 img { width:  80%; }
       .onebigimg75 img { width:  75%; }
+      .float_right_img img { float: right; }
 
       /* logos at the botom */
       .bottomlogo { position: absolute;
@@ -187,7 +189,7 @@ Alejandro Revilla
 
 # The jPOS project
 
-* Used in more than .jposred[110 countries] on five continents
+* Used in more than .jposred[120 countries] on five continents
 
 * From .jpospurple[Fortune 100] and .jpospurple[Fortune 500] to small retailers and startups
 
@@ -372,12 +374,12 @@ _"Nothing is written in stone."_
 
 * **Java Virtual Threads** : this was one of the main target features
   * _Project Loom_ was finally released officially in Java 21 (September 2023), but had some problems
-  * Most problems fixed in Java 23 (September 2024)
+  * Problems fixed in Java 24 (March 2025)
   * Next Java LTS will be version 25 (September 2025)
 
 * **Instrumentation and observability** : Modern instrumentation based on open source frameworks and standards
-  * Java Flight Recorder (JRF): provides low-overhead profiling and events
-  * Micrometer with a Prometheus implementation and Grafana for charts and alerts
+  * **Java Flight Recorder** (JRF): provides low-overhead profiling and events
+  * **Micrometer** with a **Prometheus** implementation and **Grafana** for charts and alerts
 
 ---
 
@@ -400,11 +402,10 @@ _"Nothing is written in stone."_
 
 * The use of virtual threads has greatly increased the performance of the Transaction Manager
 * We can now have tens of thousands of _concurrent_ transactions in flight
-* We have been able to easily reach 10000 TPS on a notebook using some synthetic benchmarks
+* We have been able to easily reach **10,000 TPS** on a notebook using some synthetic benchmarks
 * Real life systems will interact with databases, filesystems, HSMs, external APIs, so the service
-  time of an individual transaction may not vary much, but the throughput may increase considerably
-* Much simpler programming model (avoid reactive, futures, etc!)
-
+  time of an individual transaction may not vary much, but the **throughput** will increase considerably
+* Much simpler programming model (avoid reactive, futures, continuations, etc.!)
 
 ---
 
@@ -421,12 +422,13 @@ _"Nothing is written in stone."_
 * Most development and new features will now happen for jPOS 3 in the `main` branch
 
 * jPOS 2.x still exists in the `tail` branch
-  * We may back-port on rare occassions to `tail` at our own discretion
-  * It will remain with Java 1.8 as its target platform
+  * We may back-port features to `tail`, on rare occassions, at our own discretion
+  * It will remain with **Java 1.8** as its target platform
   * Maintained and bug-fixed for the foreseeable future
     (multi-billion-dollar companies use jPOS 2.x systems that handle millions of transactions daily)
   
-* Our large systems such as jCard and jPTS are being ported to jPOS 3 and some clients are already testing them
+* Our large systems such as jCard and jPTS are being ported to jPOS 3 and some clients are
+  already testing them for new projects.
 
 ---
 
