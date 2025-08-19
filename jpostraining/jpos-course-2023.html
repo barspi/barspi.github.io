@@ -1162,11 +1162,11 @@ class: center, middle
 # TransactionManager
 
 * We use the `TransactionManager` to handle the business logic in a reusable and modularized manner
+
 * It's another _`QBean`_ that is described by an XML file into the `deploy` directory
-* A transaction is usually represented by an instance of the class `org.jpos.transaction.Context`
+
 * The transaction is executed by a sequence of _`TransactionParticipant`_'s that are
   called in order and they pass the `Context` object from one to the other
-* The `TransactionManager` takes its transactions (i.e., `Context` instances) from a configurable space queue
 
 ---
 
@@ -1203,11 +1203,6 @@ class: center, middle
 ```
 ]
 
----
-
-# TransactionManager
-
-.onebigimg[ ![](images/tm_example.png) ]
 
 ---
 
@@ -1243,13 +1238,26 @@ public interface TransactionConstants {
 
 # TransactionManager
 
-* It uses a 2-phase commit protocol:
+* It uses a two-phase commit protocol: _prepare phase_, and then _commit_ or _abort_ phase.
+
+* During the _**prepare phase**_, the TransactionManager calls the `prepare()` method on every participant, in order.<br>
+  They may return `PREPARED` (success) or `ABORTED` (failure).
+
+* The **prepare phase** ends successfully when .stronger[all] participants return `PREPARED`, in which
+   case we enter the _**commit phase**_, and each `commit()` method is called.
+
+* But, as soon as one participant returns `ABORTED` (found an error condition that makes the
+  transaction to fail), we enter the _**abort phase**_.<br>
+  Then, all the `abort()` methods are called (of the participants that were part of the first phase).
+
+
+<!--
   * first, the `prepare()` method of every participant is called, in order.<br>
   * the `prepare()` methods return success (`PREPARED`) or failure (`ABORTED`)
   * if .stronger[all] participants succeeded, then we enter the _commit phase_ and each `commit()` method is called
   * but, if .stronger[_one participant indicates failure_] (i.e., it returns `ABORTED`), we enter the _abort phase_
     and call `abort()` for all the participants that have already participated during the _prepare phase_
-
+-->
 ---
 
 # TransactionManager
@@ -1258,22 +1266,29 @@ public interface TransactionConstants {
      public int  prepare (long id, Serializable context);
 ```
 
-We normally use the class `org.jpos.transaction.Context` as the context object that is
-passed from one participant to the next. It's like a `Map` of keys and values.
+* Transactions are usually represented by an instance of `org.jpos.transaction.Context`, which implements `Serializable`.
 
-We use some "well-known" key names in our systems.
+* `Context` is a key/value type of object, similar to a `Map`, but with extra functionality.
 
-Later versions of jPOS (> 2.1.0), provide a convenient `enum org.jpos.transaction.ContextConstants`
-that can be used as "well-known" keys, but other custom ones can be used.
+* The `Context` is passed from one participant to the next. They may get values from tje `Context`, and
+  some of them may provide, or put, values in it, for the benefit of the following participants.
 
- http://jpos.org/doc/javadoc/org/jpos/transaction/ContextConstants.html
-
-???
-
-* también decir que los participants se instancian UNA VEZ y no deberían guardar estado
-
+* We use some "well-known" key names in our systems, normally using string keys, but enums or similar keys may be used.
 
 ---
+
+# TransactionManager
+
+
+
+
+* The `TransactionManager` takes its transactions (i.e., `Context` instances) from a configurable space queue
+
+.onebigimg[ ![](images/tm_example.png) ]
+
+---
+
+
 
 # TransactionManager
 
