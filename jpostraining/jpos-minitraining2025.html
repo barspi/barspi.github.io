@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html>
+    <!--    Este documento html es para ser usado con Remarkjs
+            https://remarkjs.com
+            https://github.com/gnab/remark
+    -->
+  <head>
+    <title>Title</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+      @import url('https://fonts.googleapis.com/css?family=Ubuntu');
+
+      /* don't change color of visited */
+      a, a:visited, a:hover, a:active {
+        color: blue;
+      }
+
+      body { /* font-family: 'Droid Serif'; */
+        font-family: 'Ubuntu';
+      }
+
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+
+      h1 { text-align: center; }     /* los titulos van centrados */
+
+      .remark-slide-content { font-size: 18pt; }
+      .remark-slide-number  { font-size: 50%; }
+
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      .remark-code { font-size: 85%; }
+      .remark-inline-code { color: indianred; }
+      .remark-code-line-highlighted { background-color: #0000ff; }
+
+      .smaller-code90p { font-size: 90%; }
+      .smaller-code85p { font-size: 85%; }
+      .smaller-code75p { font-size: 75%; }
+      .stronger { font-size: 110%; font-weight: bolder; }
+
+
+      .consoleTextInline {  font-family: 'Ubuntu Mono'; font-size: 90%;
+                            background-color: black;
+                            padding: 0.1em 0.2em;
+      }
+
+      /* text colors */
+      .grayed50     { color: rgb(50%, 50%, 50%); }
+      .jposred      { color: rgb(228,  27,  35); }
+      .jpospurple   { color: rgb(105,  70, 200); }
+      .greenConsole { color: rgb(0,  250, 0); }
+      .codered      { color: indianred; } /** copied from .remark-inline-code **/
+}
+      /* paragrah classes */
+      .topleftminititle {
+              font-family: 'Yanone Kaffeesatz';
+              font-weight: normal;
+              font-size: 16pt;
+              position: absolute;
+      }
+
+      li { margin-bottom: 0.3em; }
+      li > p {  margin-bottom: 0.3em; }
+      .line1_5 li {  margin-bottom: 1em; } /** li's más separaditos  .line1_5[...y aca una lista...] **/
+
+      .biggerpara { font-size: 32pt; }
+      .bigpara { font-size: 28pt; }
+      .mediumpara { font-size: 16pt; }
+      .smallpara { font-size: 14pt; }
+      .para50 { padding-left: 25%;  padding-right: 25%;}
+      .float_right { float: right; }
+
+      .grayframe {  background-color: #bbbbbb;
+                    padding-left: 0.3em; padding-right: 0.3em;  padding-bottom: 0.1em;}
+      blockquote { font-style: italic; }
+
+      /* image classes */
+      .onebigimg   img { width:  95%; }
+      .onebigimg80 img { width:  80%; }
+      .onebigimg75 img { width:  75%; }
+
+.onebigimg45 img { width:  45%; }
+      .float_right_img img { float: right; }
+
+/*      .table90 table {
+        width: 100%;
+      }
+      .table90 table th {
+        width: 8em;
+      }
+*/
+      /* logos at the botom */
+      .bottomlogo { position: absolute;
+                    bottom: 20px;
+                    opacity: 0.5;
+      }
+
+      /** padding-overrides */
+      .smallpaddingLR { padding: 1em 2em 1em 2em; }
+
+
+      /* right: igual al padding que tiene remark-slide-content
+         padding-bottom: para alinearlo con el logo de jpos y que quede lindo
+       */
+      .bottomlogo.right     { right: 2em; padding-bottom: 10px; }
+      .bottomlogo.right img { width: 100px; }
+      .bottomlogo.left      { left:  2em;}
+      .bottomlogo.left  img { width: 100px; left:  2em;}
+      .img50pct         img { width: 50%; }
+
+    </style>
+  </head>
+
+  <body>
+    <textarea id="source">
+layout: true
+
+[jposlogo]:   images/logo_jpos_170x116.png         "jPOS Logo"
+[transalogo]: images/logo_transactility_220x72.png "Transactility Logo"
+
+
+
+.bottomlogo.left[ ![jpos.org][jposlogo] ]
+.bottomlogo.right[ ![transactility.com][transalogo] ]
+
+---
+
+class: center
+
+# jPOS Mini-training
+
+.center.onebigimg45[ ![jpos.org][jposlogo] ]
+##  &lt; info@transactility.com >
+
+## Barzilai Spinak &lt; barspi@transactility.com >
+Core jPOS Developer<br>
+jPOS Evangelist<br>
+a.k.a. _The Facilitator_<br>
+
+---
+
+exclude: true
+class: center, middle
+
+<!-- logos placeholder slide -->
+[jposlogo]:   images/logo_jpos_170x116.png         "jPOS Logo"
+[transalogo]: images/logo_transactility_220x72.png "Transactility Logo"
+
+---
+
+# jPOS.org and Transactility, Inc.
+
+<br><br>
+
+|                                               |                                                               |
+| --------------------------------------------- | -------------------------------------------------------------:|
+|![jpos.org][jposlogo]                          | <!-- empty -->                                                |
+| .grayed50[Home site of the jPOS.org project]  | ![transactility.com][transalogo]                              |
+| <!-- empty -->                                | .grayed50[_"Commercial Licensing and Support for jPOS.org"_]  |
+
+
+---
+
+exclude: true
+<!-- foto de apr excluida por ahora -->
+
+# The jPOS project
+
+.center.img50pct[![8583 flavors](images/apr.jpg)]
+
+Alejandro Revilla
+- The Creator
+- a.k.a. `@apr`
+
+---
+
+# The jPOS project
+
+* Used in more than .jposred[120 countries] on five continents
+
+* From .jpospurple[Fortune 100] and .jpospurple[Fortune 500] to small retailers and startups
+
+.center.onebigimg75[![logos](images/jpos_users_logos.png)]
+
+
+---
+
+# The jPOS project
+
+<!--
+**International Organization for Standardization**
+
+_Financial transaction card originated messages_
+
+The standard _"specifies a common interface by which financial transaction
+card originated messages may be interchanged between acquirers and card issuers."_
+
+It specifies message structure, format and content, data elements and values for data elements.
+-->
+
+Developed as an open source project, with **dual license**
+* GNU AFFERO GENERAL PUBLIC LICENSE
+  * The code is free to study, test, change
+* Inexpensive **commercial** license to develop your payments solutions with no GNU restrictions.
+
+.center[`https://transactility.com/products/jpos-licensing`]
+
+* Large community of users accross all areas of the payments industry.
+
+---
+
+# The jPOS project
+
+
+jPOS was born as an open-source, mission-critical, enterprise software, 
+to handle **ISO-8583** messaging and connectivity.
+
+.onebigimg[![8583 flavors](images/iso8583flavorsandversions.png)]
+
+
+.center[**But it's so much more!**]
+---
+
+# The jPOS project
+
+
+
+It has grown into a large family of .jpospurple[commercial products] using jPOS at their core, along other technologies and
+proprietary code.
+
+Our products integrate solutions at all levels in the payments and card industry.
+
+
+* .codered[**jPTS**]: switching system.
+* .codered[**jCard**]: authorizing/CMS.
+* .codered[**ISO/Bridge**]: lightweight bridge: point A to point B.<br>
+  Endpoints can be ISO-8583 or XML, HTTP+JSON, etc.
+* .codered[**Gateway**]: custom ISO/Bridge "on vitamins".<br>
+  Half way between ISO/Bridge and a full-fledged jPTS.<br>
+  It may add extra features such as HSM integration, HA deployments, light DB,
+  or querying external APIs.
+
+
+
+---
+
+# jPOS-CMF
+
+.center[jPOS Common Message Format]
+
+It's an ISO-8583 specification based on **`v2003`**.
+
+
+Used internally and for intercommunication in our products such as jPTS and jCard.
+
+* https://github.com/jpos/jPOS-CMF
+* http://jpos.org/doc/jPOS-CMF.pdf
+
+
+---
+
+# jPOS Family Architecture Stack
+
+.onebigimg[ ![arch stack](images/jpos_arch_stack.png)]
+
+---
+
+# Kickstart Implementation
+
+Our flagship commercial products and libraries are provided as what we call a .codered[**Kickstart Implementation**<sup>*</sup>].
+
+The _licensee_ gets all the source code and rights to modify it and extend it as needed.
+
+New projects start from the **most current** kickstart implementation(s) and are developed further
+following the client's requirements.
+Additional modules, custom logic, and integration with external systems are added.
+
+**The final result is a fully customized system that belongs to you, with complete ownership and full
+control over the source code**.
+
+
+_"Nothing is written in stone."_
+<br>
+.float_right.smallpara[<sup>*</sup>_formerly Reference Implementation_]
+
+---
+
+# jPOS Applications
+
+<br/>
+
+.onebigimg[ ![arch stack](images/lego_varied_models.jpg)]
+
+---
+
+# Custom Components
+
+<br/>
+.center.onebig75[ ![arch stack](images/lego_all_sides.png)]
+
+---
+
+# jPOS 3
+
+* Released in November 2024 after almost 3 years of work
+
+* **Java Virtual Threads** : this was one of the main target features
+  * _Project Loom_ was finally released officially in Java 21 (September 2023), but had some problems
+  * Problems fixed in Java 24 (March 2025)
+  * Next Java LTS will be version 25 (September 2025)
+
+* **Instrumentation and observability** : Modern instrumentation based on open source frameworks and standards
+  * **Java Flight Recorder** (JRF): provides low-overhead profiling and events
+  * **Micrometer** with a **Prometheus** implementation and **Grafana** for charts and alerts
+
+---
+
+# jPOS 3
+
+* **Structured Audit Logs**: output in traditional jPOS XML, jSON, TXT, Markdown
+  * Log events based on light java `record`s with annotations and event renderers.
+    More easily consumable by external tools.
+
+* Use of Java Modules, with `module-info` descriptors for better modularity
+
+* New packagers, better garbage collection, bug fixes, stability
+
+* Lots of code cleanup, libraries upgrades, better use of newer Java syntax and features. 
+
+
+---
+
+# jPOS 3 Performance
+
+* The use of virtual threads has greatly increased the performance of the Transaction Manager
+* We can now have tens of thousands of _concurrent_ transactions in flight
+* We have been able to easily reach **10,000 TPS** on a notebook using some synthetic benchmarks
+* Real life systems will interact with databases, filesystems, HSMs, external APIs, so the service
+  time of an individual transaction may not vary much, but the **throughput** will increase considerably
+* Much simpler programming model (avoid reactive, futures, continuations, etc.!)
+
+---
+
+# Grafana
+
+* Customizable charts using query language from a Micrometer/Prometheus source
+
+.center.onebigimg80[![grafana](images/grafana_jpos3_board.png)]
+
+---
+
+# jPOS 2.x ?
+
+* Most development and new features will now happen for jPOS 3 in the `main` branch
+
+* jPOS 2.x still exists in the `tail` branch
+  * We may back-port features to `tail`, on rare occassions, at our own discretion
+  * It will remain with **Java 1.8** as its target platform
+  * Maintained and bug-fixed for the foreseeable future
+    (multi-billion-dollar companies use jPOS 2.x systems that handle millions of transactions daily)
+  
+* Our large systems such as jCard and jPTS are being ported to jPOS 3 and some clients are
+  already testing them for new projects.
+
+---
+
+class: center, middle
+
+# Demo time
+
+---
+
+# jPOS Training
+
+
+* Core jPOS training for your developers
+* Low level stuff &nbsp;&nbsp;.biggerpara[🤓]
+* Theory and simple hands-on examples to reinforce concepts
+* Troubleshooting from the logs <!--, because>--><br>
+<!-- &nbsp;&nbsp;&nbsp;&nbsp;_"life's boring when everything works"_ -->
+* Normally takes around 6 half-days (~20 hours)
+* Ample time for Q & A
+* Remote or on-site
+* This is mostly **core** jPOS, but continuous training and hand-holding during
+  the development, certification, and deployment phases
+
+---
+
+# Q & A
+
+.onebigimg[ ![Q&A](images/bigbluequestion.jpg) ]
+
+
+[jposlogo]:   images/logo_jpos_170x116.png         "jPOS Logo"
+[transalogo]: images/logo_transactility_220x72.png "Transactility Logo"
+
+
+<!-- parece que esta tambien tiene que estar al final si no no salen logos -->
+
+[jposlogo]:   images/logo_jpos_170x116.png         "jPOS Logo"
+[transalogo]: images/logo_transactility_220x72.png "Transactility Logo"
+
+---
+
+exclude: true
+
+BBB PLACEHOLDER LAST SLIDE BBB
+
+    </textarea>
+
+    <script src="js/remark-latest.min_0.15.0.js"></script>
+    <script>
+      var slideshow = remark.create({
+          highlightLines: true,
+          highlightStyle: "sunburst"
+      });
+    </script>
+  </body>
+</html>
+
