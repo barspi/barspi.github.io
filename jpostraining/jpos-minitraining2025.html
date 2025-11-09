@@ -25,6 +25,8 @@
       h1, h2, h3 {
         font-family: 'Yanone Kaffeesatz';
         font-weight: normal;
+        margin-top: 0.5em;
+        margin-bottom: 0.5em;
       }
 
       h1 { text-align: center; }     /* los titulos van centrados */
@@ -54,7 +56,7 @@
       .jpospurple   { color: rgb(105,  70, 200); }
       .greenConsole { color: rgb(0,  250, 0); }
       .codered      { color: indianred; } /** copied from .remark-inline-code **/
-}
+
       /* paragrah classes */
       .topleftminititle {
               font-family: 'Yanone Kaffeesatz';
@@ -82,8 +84,7 @@
       .onebigimg   img { width:  95%; }
       .onebigimg80 img { width:  80%; }
       .onebigimg75 img { width:  75%; }
-
-.onebigimg45 img { width:  45%; }
+      .onebigimg45 img { width:  45%; }
       .float_right_img img { float: right; }
 
 /*      .table90 table {
@@ -119,10 +120,6 @@
     <textarea id="source">
 layout: true
 
-[jposlogo]:   images/logo_jpos_170x116.png         "jPOS Logo"
-[transalogo]: images/logo_transactility_220x72.png "Transactility Logo"
-
-
 
 .bottomlogo.left[ ![jpos.org][jposlogo] ]
 .bottomlogo.right[ ![transactility.com][transalogo] ]
@@ -140,15 +137,6 @@ class: center
 Core jPOS Developer<br>
 jPOS Evangelist<br>
 a.k.a. _The Facilitator_<br>
-
----
-
-exclude: true
-class: center, middle
-
-<!-- logos placeholder slide -->
-[jposlogo]:   images/logo_jpos_170x116.png         "jPOS Logo"
-[transalogo]: images/logo_transactility_220x72.png "Transactility Logo"
 
 ---
 
@@ -191,17 +179,6 @@ Alejandro Revilla
 
 # The jPOS project
 
-<!--
-**International Organization for Standardization**
-
-_Financial transaction card originated messages_
-
-The standard _"specifies a common interface by which financial transaction
-card originated messages may be interchanged between acquirers and card issuers."_
-
-It specifies message structure, format and content, data elements and values for data elements.
--->
-
 Developed as an open source project, with **dual license**
 * GNU AFFERO GENERAL PUBLIC LICENSE
   * The code is free to study, test, change
@@ -223,10 +200,106 @@ to handle **ISO-8583** messaging and connectivity.
 
 
 .center[**But it's so much more!**]
+
+
 ---
 
-# The jPOS project
+# jPOS-CMF
 
+.center[jPOS Common Message Format]
+
+It's an ISO-8583 specification based on **`v2003`**.
+
+Used internally and for intercommunication in our products such as jPTS and jCard.
+
+* https://github.com/jpos/jPOS-CMF
+* http://jpos.org/doc/jPOS-CMF.pdf
+
+---
+
+exclude: true
+
+# ISO-20022
+
+* New ISO-20022 Station to process payment transactions and inter-institution settlement
+
+* Maps into jPOS-CMF, smoothly integrating into the current architecture and data models
+
+---
+
+
+# jPOS Family Architecture Stack
+
+.onebigimg[ ![arch stack](images/jpos_arch_stack.png)]
+
+---
+
+# The jPOS framework
+
+
+.onebigimg[ ![arch stack](images/legobucket.png)]
+
+---
+
+# jPOS Applications
+.center.smallpara[e.g. kickstart implementations]
+
+<br/>
+
+.onebigimg[ ![arch stack](images/lego_varied_models.jpg)]
+
+---
+
+# Custom Components
+
+<br/>
+.center.onebig75[ ![arch stack](images/lego_all_sides.png)]
+
+---
+
+# The jPOS ecosystem<br>.mediumpara[low-level components]
+
+Applications are built on the standard components of the jPOS ecosystem, plus a lot of custom code
+for business logic and configuration
+
+.smallpara[
+* jPOS<br>
+  * Servers, Channels, Packagers, MUXes, etc
+  * TransactionManager, queues, crypto libs
+  * jPOS-CMF
+
+* jPOS-EE<br>
+   * dbsupport (dev under PostgreSQL, but any Hibernate DBs)
+   * miniGL, flyway, cmf, saf
+   * sysconfig, qrest, http-client, quartz
+   * cryptoservice, cryptoserver
+]
+
+---
+
+# The jPOS ecosystem<br>.mediumpara[high-level components]
+
+We have standard complex components to integrate out systems.
+
+.smallpara[
+* Source and Destination Stations
+  * Visa, Mastercard, Amex, Fiserv, PostBridge, PULSE, Prosa, etc
+  * Packagers for dozen others ISO-8583 specs
+  * Adding new stations is a typical part of any project
+  * .codered[**New ISO-20022 Station**]
+* Extendable REST APIs for jCard and jPTS
+* HSM modules
+  * Thales, Atalla, Futurex Excrypt, Utimaco, AWS Cryptography
+* Clearing and Settlement processors
+  * Mastercard IPM, Visa BASE II, Prosa, Discover, etc.
+* Generic **embossing** engine
+  * Needs to be adapted for every client
+* Web UI based on Next.js  
+]
+
+---
+
+# The jPOS ecosystem<br>.mediumpara[kickstart applications]
 
 
 It has grown into a large family of .jpospurple[commercial products] using jPOS at their core, along other technologies and
@@ -244,28 +317,6 @@ Our products integrate solutions at all levels in the payments and card industry
   It may add extra features such as HSM integration, HA deployments, light DB,
   or querying external APIs.
 
-
-
----
-
-# jPOS-CMF
-
-.center[jPOS Common Message Format]
-
-It's an ISO-8583 specification based on **`v2003`**.
-
-
-Used internally and for intercommunication in our products such as jPTS and jCard.
-
-* https://github.com/jpos/jPOS-CMF
-* http://jpos.org/doc/jPOS-CMF.pdf
-
-
----
-
-# jPOS Family Architecture Stack
-
-.onebigimg[ ![arch stack](images/jpos_arch_stack.png)]
 
 ---
 
@@ -287,20 +338,7 @@ _"Nothing is written in stone."_
 <br>
 .float_right.smallpara[<sup>*</sup>_formerly Reference Implementation_]
 
----
 
-# jPOS Applications
-
-<br/>
-
-.onebigimg[ ![arch stack](images/lego_varied_models.jpg)]
-
----
-
-# Custom Components
-
-<br/>
-.center.onebig75[ ![arch stack](images/lego_all_sides.png)]
 
 ---
 
@@ -308,12 +346,12 @@ _"Nothing is written in stone."_
 
 * Released in November 2024 after almost 3 years of work
 
-* **Java Virtual Threads** : this was one of the main target features
+* .codered[**Java Virtual Threads**] : this was one of the main target features
   * _Project Loom_ was finally released officially in Java 21 (September 2023), but had some problems
   * Problems fixed in Java 24 (March 2025)
   * Next Java LTS will be version 25 (September 2025)
 
-* **Instrumentation and observability** : Modern instrumentation based on open source frameworks and standards
+* .codered[**Instrumentation and observability**] : Modern instrumentation based on open source frameworks and standards
   * **Java Flight Recorder** (JRF): provides low-overhead profiling and events
   * **Micrometer** with a **Prometheus** implementation and **Grafana** for charts and alerts
 
@@ -321,7 +359,7 @@ _"Nothing is written in stone."_
 
 # jPOS 3
 
-* **Structured Audit Logs**: output in traditional jPOS XML, jSON, TXT, Markdown
+* .codered[**Structured Audit Logs**]: output in traditional jPOS XML, jSON, TXT, Markdown
   * Log events based on light java `record`s with annotations and event renderers.
     More easily consumable by external tools.
 
@@ -358,7 +396,7 @@ _"Nothing is written in stone."_
 * Most development and new features will now happen for jPOS 3 in the `main` branch
 
 * jPOS 2.x still exists in the `tail` branch
-  * We may back-port features to `tail`, on rare occassions, at our own discretion
+  * We may back-port features to `tail`, on rare occasions, at our own discretion
   * It will remain with **Java 1.8** as its target platform
   * Maintained and bug-fixed for the foreseeable future
     (multi-billion-dollar companies use jPOS 2.x systems that handle millions of transactions daily)
@@ -370,8 +408,10 @@ _"Nothing is written in stone."_
 
 class: center, middle
 
-# Demo time
+<!-- # Demo time -->
+# Q & A
 
+.onebigimg[ ![Q&A](images/bigbluequestion.jpg) ]
 ---
 
 # jPOS Training
@@ -394,15 +434,11 @@ class: center, middle
 
 .onebigimg[ ![Q&A](images/bigbluequestion.jpg) ]
 
-
-[jposlogo]:   images/logo_jpos_170x116.png         "jPOS Logo"
-[transalogo]: images/logo_transactility_220x72.png "Transactility Logo"
-
-
 <!-- parece que esta tambien tiene que estar al final si no no salen logos -->
-
 [jposlogo]:   images/logo_jpos_170x116.png         "jPOS Logo"
 [transalogo]: images/logo_transactility_220x72.png "Transactility Logo"
+[transalogosvg]: images/transalogo_hires.svg       "Transactility Logo"
+
 
 ---
 
